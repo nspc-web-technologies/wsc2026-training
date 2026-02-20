@@ -15,11 +15,7 @@ export default {
   inject: [],
   data() {
     return {
-      playingModeList: [
-        "手動制御",
-        "自動再生",
-        "ランダム再生",
-      ],
+      // remove: playingModeList を削除。<option> を直接記述することで data 定義と v-for が不要になる。
       currentPlayingModeIndex: 0,
 
       themeList: [
@@ -43,8 +39,14 @@ export default {
       isDragedId: null,
 
       isOpenCommandBar: false,
+      // add: 採点基準「When config button is clicked, the config panel is displayed」に対応。
+      // 修正前は設定パネルが常時表示されており、ボタンで開閉する仕様を満たしていなかった。
+      // このフラグで template 側の v-show を制御する。
+      isOpenConfigPanel: false,
     }
   },
+  // tricky: provide() で toRef を使い reactivity を保持。
+  // そのまま渡すと値のコピーになり、親の変更が子に伝わらない。
   provide() {
     return {
       currentPlayingModeIndex: toRef(this.$data, "currentPlayingModeIndex"),
@@ -63,8 +65,8 @@ export default {
   computed: {
 
   },
-  async created() {
-
+  created() {
+    // omit: 非同期処理がないため async は不要。
   },
   mounted() {
     addEventListener("keydown", this.onKeydown);
@@ -77,16 +79,13 @@ export default {
     // 再生モードの変更
     currentPlayingModeIndex(newVal) {
       clearInterval(this.intervalId);
+      // remove: case 0 と default は break のみで何もしないため削除。
       switch (newVal) {
-        case 0:
-          break;
         case 1:
           this.intervalId = setInterval(this.autoSlideshow, 3000);
           break;
         case 2:
           this.intervalId = setInterval(this.randomSlideshow, 3000);
-          break;
-        default:
           break;
       }
     },
@@ -98,8 +97,9 @@ export default {
   methods: {
     // 画像の追加
     addImageList(name, base64) {
+      // omit: 'id' のクォートを削除。id は予約語でも特殊文字でもないためクォート不要。
       this.imageList.push({
-        'id': this.nextImageListId,
+        id: this.nextImageListId,
         name,
         base64,
       });
@@ -109,13 +109,17 @@ export default {
     onKeydown(ev) {
       switch (ev.key) {
         case "ArrowLeft":
-          if (this.currentPlayingModeIndex === 0) {
+          // fix: !this.isOpenCommandBar を追加。
+          // CommandBar 表示中でも ArrowLeft/ArrowRight を押すと HomeView のスライド送りが発火してしまっていた。
+          // CommandBar が開いている間はスライド操作を無効にする。
+          if (this.currentPlayingModeIndex === 0 && !this.isOpenCommandBar) {
             ev.preventDefault();
             this.manualSlideshow(-1);
           }
           break;
         case "ArrowRight":
-          if (this.currentPlayingModeIndex === 0) {
+          // fix: ArrowLeft と同様の理由で !this.isOpenCommandBar を追加。
+          if (this.currentPlayingModeIndex === 0 && !this.isOpenCommandBar) {
             ev.preventDefault();
             this.manualSlideshow(1);
           }
@@ -127,41 +131,52 @@ export default {
           }
           break;
         case "/":
-          ev.preventDefault();
-          this.openCommandBar();
+          // fix: !this.isOpenCommandBar を追加。
+          // 修正前は CommandBar が開いている状態でも ev.preventDefault() が呼ばれていたため、
+          // CommandBar の input 欄に "/" を入力しようとしても文字が入らなかった。
+          // CommandBar が閉じているときだけ preventDefault() + 開く動作をする。
+          if (!this.isOpenCommandBar) {
+            ev.preventDefault();
+            this.openCommandBar();
+          }
           break;
         case "Escape":
           ev.preventDefault();
           this.closeCommandBar();
           break;
-        default:
-          break;
+        // omit: default: break は何もしないため削除。
       }
     },
     // 手動制御用 呼ばれるたび画像を変更 ループしない
     manualSlideshow(delta) {
-      if (this.imageList.length !== 0) {
+      // omit: length !== 0 → length に短縮。0 以外は truthy のため同義。
+      if (this.imageList.length) {
         this.curenntImageIndex = Math.min(Math.max(0, this.curenntImageIndex + delta), this.imageList.length - 1);
       }
     },
     // 自動再生用 setInterval前提 無限に再生
     autoSlideshow() {
-      if (this.imageList.length !== 0) {
+      // omit: manualSlideshow と同様に length !== 0 → length に短縮。
+      if (this.imageList.length) {
+        // smart: % imageList.length で末尾判定なしに先頭へ折り返す無限ループを実現。
         this.curenntImageIndex = (this.curenntImageIndex + 1) % this.imageList.length;
       }
     },
     // ランダム再生用 setInterval前提 無限に再生
     randomSlideshow() {
       if (this.imageList.length > 1) {
-        let oldIndex = this.curenntImageIndex;
+        // omit: oldIndex 変数を削除。do...while の条件で this.curenntImageIndex を直接参照できる。
+        // smart: do...while で前回と異なる index を選ぶ。if 再帰や while 初期化より簡潔。
         let newIndex;
         do {
           newIndex = Math.floor(Math.random() * this.imageList.length);
-        } while (oldIndex === newIndex);
+        } while (this.curenntImageIndex === newIndex);
         this.curenntImageIndex = newIndex;
       }
     },
     // 写真の並び替え制御
+    // smart: 1箇所からしか呼ばれない1行の代入なのでインラインでも問題ないが、
+    // open/close と同様、対になる操作（DragStart/Drop）はセットで関数化する。
     orderSlideShowOnDragStart(index) {
       this.isDragedId = index;
     },
@@ -170,11 +185,12 @@ export default {
       const movedImage = this.imageList.splice(this.isDragedId, 1)[0];
       this.imageList.splice(index, 0, movedImage);
     },
-    // コマンドバー制御
+    // smart: 1行の代入なのでインラインでも問題ないが、
+    // open/close の対になる操作を分離することで、複数箇所（Ctrl+K, /）から呼び出しても意図が明確になる。
     openCommandBar() {
       this.isOpenCommandBar = true;
     },
-    // コマンドバー制御
+    // smart: close も同様。1箇所（Escape）からしか呼ばれないがopen との対で関数化。
     closeCommandBar() {
       this.isOpenCommandBar = false;
     },
@@ -184,17 +200,23 @@ export default {
 
 <template>
   <div class="home-view">
-    <SlideShow></SlideShow>
-    <LoadImage></LoadImage>
-    <div class="config-panel">
+    <!-- omit: 自己閉じタグに変更。内容のないコンポーネントは <SlideShow /> と書ける。 -->
+    <SlideShow />
+    <LoadImage />
+    <!-- add: 設定ボタンを追加。クリックするたびに isOpenConfigPanel を反転して開閉する。 -->
+    <button @click="isOpenConfigPanel = !isOpenConfigPanel">設定</button>
+    <!-- add: v-show="isOpenConfigPanel" を追加。修正前は常時表示されていた。
+         v-if ではなく v-show を使うことで DOM は残したまま表示/非表示を切り替える。 -->
+    <div class="config-panel" v-show="isOpenConfigPanel">
       <h2>設定パネル</h2>
       <div>
         <label>
           操作モード：
+          <!-- omit: playingModeList の v-for を削除。件数固定のため直接 <option> を記述する方がシンプル。 -->
           <select name="playing-mode" v-model="currentPlayingModeIndex">
-            <option v-for="(playingModeListItem, index) in playingModeList" :value="index" :key="index">
-              {{ playingModeListItem }}
-            </option>
+            <option :value="0">手動制御</option>
+            <option :value="1">自動再生</option>
+            <option :value="2">ランダム再生</option>
           </select>
         </label>
       </div>
@@ -211,6 +233,8 @@ export default {
       <div class="order-slide-show">
         <span>写真の並び替え：</span>
         <TransitionGroup name="image-list" tag="ul">
+          <!-- tricky: index を key にすると並び替え後に TransitionGroup が要素を誤追跡しアニメーションが崩れる。
+               固有 id を使うことで正しく追跡できる。 -->
           <li v-for="(imageListItem, index) in imageList" :key="imageListItem.id" draggable="true"
             @dragstart="orderSlideShowOnDragStart(index)" @dragover.prevent @drop="orderSlideShowOnDrop(index)">
             <img :src="imageListItem.base64" alt="">
@@ -218,7 +242,9 @@ export default {
         </TransitionGroup>
       </div>
     </div>
-    <CommandBar v-if="isOpenCommandBar"></CommandBar>
+    <!-- tricky: v-show にすると閉じても DOM が残り query がリセットされない。
+         v-if なら閉じると DOM ごと破棄され query が自動リセットされる。 -->
+    <CommandBar v-if="isOpenCommandBar" />
   </div>
 </template>
 
@@ -229,7 +255,6 @@ export default {
   gap: 16px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-
 
 .config-panel {
   display: flex;

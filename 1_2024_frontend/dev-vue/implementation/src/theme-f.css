@@ -1,7 +1,14 @@
 .themeF-enter-active,
 .themeF-leave-active {
   transition: all 1s ease;
-  clip-path: circle(80%);
+}
+
+/* fix: leave-to を追加。
+ * 修正前は leave-active に clip-path: circle(80%) が固定されていたため、
+ * 退場スライドはトランジション中も circle(80%) のまま変化せず、退場アニメーションが発生しなかった。
+ * leave-to に circle(0) を設定することで、退場時に円形が縮んで消えるアニメーションが動作する。 */
+.themeF-leave-to {
+  clip-path: circle(0);
 }
 
 .themeF-enter-from {

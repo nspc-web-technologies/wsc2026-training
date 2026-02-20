@@ -8,6 +8,9 @@
   transform-origin: center right;
 }
 
+/* tricky: z-index で入場スライドを退場スライドの下に潜り込ませる。
+ * enter-from で z-index: 390 にし退場スライド（400）の裏に隠れる。
+ * transform を使わないため rotateY と干渉しない。 */
 .themeE-enter-active,
 .themeE-leave-active {
   transition: all 0.5s ease;
@@ -18,11 +21,9 @@
   z-index: 390;
 }
 
+/* omit: .left と .right の transition が同内容のため1つのルールに結合。 */
 .themeE-enter-active .left,
-.themeE-leave-active .left {
-  transition: all 0.5s ease;
-}
-
+.themeE-leave-active .left,
 .themeE-enter-active .right,
 .themeE-leave-active .right {
   transition: all 0.5s ease;
