@@ -1,0 +1,69 @@
+.themeD-slide-show .slide-window {
+  background: #000;
+  /* remove: display: grid; place-items: center を削除。
+   * .slide は position: absolute のため通常フローを外れており、grid の place-items: center は効かない。
+   * センタリングは .slide の top/left/translate で実現しているため不要。 */
+}
+
+.themeD-slide-show .slide {
+  width: 85%;
+  height: 85%;
+  /*
+   * fix: top/left/translate でセンタリングを追加。
+   * SlideShow.vue の scoped CSS で .slide に position: absolute が設定されているため、
+   * position: absolute の要素は通常フローから外れ、親の display: grid; place-items: center が効かない。
+   * そのため top: 50%; left: 50%; translate: -50% -50%; で手動でセンタリングする。
+   * top/left の % は親のサイズ基準、translate の % は自分自身のサイズ基準。
+   * この基準の違いを利用してセンタリングが成立する。
+   * 例: 親 400px、子 85%(340px) の場合：
+   *   left: 50%(親の200px) → translate: -50%(自身の170px戻る) → 左端 30px
+   *   右端 30+340=370px → 左右余白 30px ずつ → センタリング
+   *
+   * transform ではなく CSS 個別プロパティの translate を使う理由：
+   * Vue Transition の enter-from に transform: translateX(-100%) を使っているため、
+   * translate と transform は独立して合成される CSS 個別プロパティを使うことで競合を避ける。
+   * （transform: translate(-50%, -50%) と書くと、Transition が付与する transform: translateX(-100%) に
+   *   完全に上書きされてセンタリングが消える。translate 個別プロパティは transform とは独立して合成される）
+   *
+   * 入場開始時の位置計算：
+   *   left: 50% + translate: -50% + transform: translateX(-100%) = 画面左外 → 正常に左から入場できる
+   */
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  rotate: calc(-5deg + calc(var(--r) * 1deg));
+  border: 3px solid #fff;
+  border-radius: 5px;
+}
+
+.themeD-slide-show .slide figcaption {
+  width: 100%;
+  border-radius: 0;
+}
+
+.themeD-enter-active {
+  transition: all 0.5s ease;
+}
+
+.themeD-leave-active {
+  transition: all 0.5s ease;
+  /*
+   * fix: transition-delay: 30s → 300ms に修正。
+   * 30s はタイプミスで、新しい写真が入場し終わるのを待ってから退場を始めるための 300ms が正しい。
+   * 30s のままだと古い写真が30秒間画面に残り続けてしまう。
+   */
+  transition-delay: 300ms;
+}
+
+.themeD-enter-from {
+  transform: translateX(-100%);
+}
+
+.themeD-leave-to {
+  /*
+   * fix: opacity: 0 → transform: translateX(-100%) に変更。
+   * 仕様「Go out to left」に対応するため、フェードアウトではなく左にスライドアウトする。
+   * enter-from と同じ translateX(-100%) を使うことで「左から入り・左に出る」動作になる。
+   */
+  transform: translateX(-100%);
+}

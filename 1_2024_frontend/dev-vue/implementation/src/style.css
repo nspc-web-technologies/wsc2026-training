@@ -1,0 +1,33 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #efefef;
+}
+img {
+  display: block;
+  width: 100%;
+}
+a {
+  display: inline-block;
+}
+button {
+  cursor: pointer;
+}
+select,input{
+  padding: 4px;
+}
+button {
+  padding: 8px 12px;
+}
+#app {
+  width: 600px;
+  margin: 40px auto 0;
+  border: 1px solid #acacac;
+  background: #fff;
+  padding: 40px;
+}

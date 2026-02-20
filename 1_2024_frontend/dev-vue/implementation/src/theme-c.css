@@ -1,0 +1,29 @@
+.themeC-enter-active,
+.themeC-leave-active {
+  transition: all 0.5s ease;
+}
+
+.themeC-enter-from {
+  transform: translateY(100%);
+}
+
+.themeC-leave-to {
+  transform: translateY(-100%);
+}
+
+.themeC-enter-active figcaption {
+  transition: all 0.5s ease;
+}
+
+.themeC-enter-from figcaption {
+  transform: translateY(100%);
+}
+
+.themeC-enter-active figcaption span {
+  transition: all 0.5s ease;
+  transition-delay: calc(300ms * var(--i));
+}
+
+.themeC-enter-from figcaption span {
+  transform: translateY(calc(100% + 8px));
+}
