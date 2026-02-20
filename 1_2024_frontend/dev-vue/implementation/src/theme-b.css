@@ -1,0 +1,21 @@
+.themeB-enter-active,
+.themeB-leave-active {
+  transition: all 0.5s ease;
+}
+
+.themeB-enter-from {
+  transform: translateX(-100%);
+}
+
+.themeB-leave-to {
+  transform: translateX(100%);
+}
+
+.themeB-enter-active figcaption {
+  transition: all 0.5s ease;
+  transition-delay: 300ms;
+}
+
+.themeB-enter-from figcaption {
+  transform: translateX(-100%);
+}

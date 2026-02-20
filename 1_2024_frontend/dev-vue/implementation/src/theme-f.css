@@ -1,0 +1,18 @@
+.themeF-enter-active,
+.themeF-leave-active {
+  transition: all 1s ease;
+  clip-path: circle(80%);
+}
+
+.themeF-enter-from {
+  clip-path: circle(0);
+}
+
+.themeF-enter-active figcaption {
+  transition: all 0.5s ease;
+  transition-delay: 1s;
+}
+
+.themeF-enter-from figcaption {
+  transform: translateY(100%);
+}
