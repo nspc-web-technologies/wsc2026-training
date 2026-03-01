@@ -10,22 +10,26 @@ training/
 │   ├── tp/                       # Task specification & marking scheme
 │   │   ├── WSC2024_TP17_ME_actual_jp_final.md
 │   │   └── WSC2024_TP17_ME_making_scheme.csv
-│   └── dev-vue/                  # Vue 3 implementation
+│   └── implementation/           # Implementation
 │       ├── checklist.md          # Implementation checklist
-│       └── implementation/       # Sample Implementation
+│       └── vue/                  # Vue 3 implementation (Vue Router, Vite)
 │
 ├── 2_2024_backend/               # WSC2024 Module B - Backend
 │   ├── tp/                       # Task specification & marking scheme
 │   │   ├── WSC2024_TP17_MB_actual_jp_final.md
 │   │   ├── WSC2024_TP17_MB_making_scheme.csv
 │   │   └── images/
-│   └── design/                   # Design documents
-│       ├── README.md             # Design principles
-│       ├── 1_db.md               # Database schema
-│       ├── 2_pages.md            # Page design
-│       ├── 3_api.md              # Public API endpoints
-│       ├── 4_structure.md        # Directory structure
-│       └── 5_tasks.md            # Implementation task list
+│   ├── design/                   # Design documents (EN & JP)
+│   │   ├── README.md             # Design principles
+│   │   ├── 1_db.md               # Database schema
+│   │   ├── 2_pages.md            # Page design
+│   │   ├── 3_api.md              # Public API endpoints
+│   │   ├── 4_structure.md        # Directory structure
+│   │   ├── 5_tasks.md            # Implementation task list
+│   │   └── jp/                   # Japanese translations
+│   └── implementation/           # Implementation
+│       ├── checklist.md          # Implementation checklist
+│       └── laravel/              # Laravel implementation
 │
 ├── 3_2025_restful_api/           # WSC2025 RESTful API (not started)
 │

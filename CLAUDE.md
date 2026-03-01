@@ -2,6 +2,28 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Project Overview
+
+Training repository for WorldSkills Competition 2026. Each module subdirectory may contain task specifications (`tp/`), design documents (`design/`), and implementations (`implementation/`).
+
+## Tech Stacks
+
+### 1_2024_frontend (Module E - Frontend)
+- **Framework**: Vue 3 + Vue Router 4
+- **Build**: Vite 7
+- **UI**: Headless UI for Vue
+- **Path**: `1_2024_frontend/implementation/vue/`
+- **Dev**: `npm run dev`
+
+### 2_2024_backend (Module B - Backend)
+- **Framework**: Laravel 12 (PHP 8.2+)
+- **DB**: MySQL
+- **Path**: `2_2024_backend/implementation/laravel/`
+- **Dev**: `composer dev` (serves app, queue, logs, vite concurrently)
+- **DocumentRoot**: `17_module_b/` (replaces default `public/`)
+
+### 3_2025_restful_api (not started)
+
 ## Development Philosophy
 
 This is a competition project implementation. Focus on implementing functionality in the initial code without considering maintainability.
