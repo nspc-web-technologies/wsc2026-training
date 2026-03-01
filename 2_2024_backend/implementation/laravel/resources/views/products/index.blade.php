@@ -61,7 +61,6 @@
                     @else
                     <form action="{{route('products.hide',$product->gtin)}}" method="post">
                         @csrf
-                        @method('PUT')
                         <p><button type="submit">非表示</button></p>
                     </form>
                     @endif

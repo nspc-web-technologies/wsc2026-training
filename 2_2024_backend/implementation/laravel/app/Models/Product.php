@@ -22,7 +22,15 @@ class Product extends Model
         'company_id',
     ];
 
-    protected $primaryKey = 'gtin';
+    // tricky: $primaryKey = 'gtin' を設定すると Eloquent は gtin をプライマリキーとして扱い、
+    // Route Model Binding（URL の {product} からモデルを自動取得する機能）も gtin で解決する。しかし DB の主キーは id のまま
+    // → 意図的なら $incrementing = false と $keyType = 'string' の両方が必要
+    //   （例: protected $primaryKey = 'gtin'; public $incrementing = false; protected $keyType = 'string';）
+    // → 意図しないなら $primaryKey を削除して getRouteKeyName() で gtin を返す方が安全
+    public function getRouteKeyName()
+    {
+        return 'gtin';
+    }
 
     public function company(){
         return $this->belongsTo(Company::class);

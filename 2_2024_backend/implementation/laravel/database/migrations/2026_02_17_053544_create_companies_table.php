@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('contact_name', 255);
             $table->string('contact_mobile_number', 50);
             $table->string('contact_email_address', 255);
+            // smart: is_active に default(true) → 作成時にコード側で状態を設定する必要がない
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

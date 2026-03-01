@@ -56,7 +56,6 @@
                 <td>
                     <form action="{{route('companies.deactivate',$company->id)}}" method="post">
                         @csrf
-                        @method('PUT')
                         <p><button type="submit">無効化</button></p>
                     </form>
                 </td>

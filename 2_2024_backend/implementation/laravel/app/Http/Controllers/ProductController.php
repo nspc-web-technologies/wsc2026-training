@@ -14,7 +14,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        // fix: Product::all() ではビューで $product->company を参照するたびに個別クエリが発行される（N+1 問題）
+        // → 商品数が増えるとクエリ数が膨大になりパフォーマンスが劣化する
+        // → Product::with('company')->get() で Eager Loading し 2 クエリに抑える
+        $products = Product::with('company')->get();
         return response()->view('products.index', compact('products'))->header('cache-control', 'no-store');
     }
 
@@ -23,7 +26,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $companies = Company::all();
+        // fix: Company::all() → 無効化された企業も表示されてしまう
+        // → 設計では「active companies only」なので is_active でフィルタする
+        $companies = Company::where('is_active', true)->get();
         return response()->view('products.create', compact('companies'))->header('cache-control', 'no-store');
     }
 
@@ -49,6 +54,8 @@ class ProductController extends Controller
                 'image' => 'nullable|image',
             ]);
 
+            // tricky: unset($validated['image']) が必須
+            // → 忘れると UploadedFile オブジェクトを DB に保存しようとしてエラーになる
             unset($validated['image']);
 
             if ($request->hasFile('image')) {
@@ -56,10 +63,13 @@ class ProductController extends Controller
                 $extension = $request->file('image')->extension();
                 $filename  = $validated['gtin'] . '.' . $extension;
 
-                $path = Storage::putFileAs(
+                // fix: store() では Storage::putFileAs() でディスク指定なしで保存していた
+                // → 現在の .env では FILESYSTEM_DISK=public のためたまたま動作するが、コード上で明示していない
+                // → update() と統一して storeAs('products', $filename, 'public') に変更
+                $path = $request->file('image')->storeAs(
                     'products',
-                    $request->file('image'),
-                    $filename
+                    $filename,
+                    'public'
                 );
 
                 $validated['image_path'] = $path;
@@ -87,7 +97,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $companies = Company::all();
+        // fix: Company::all() → 無効化された企業も表示されてしまう
+        // → 設計では「active companies only」なので is_active でフィルタする
+        $companies = Company::where('is_active', true)->get();
         return response()->view('products.edit', compact('product', 'companies'))->header('cache-control', 'no-store');
     }
 
@@ -112,6 +124,8 @@ class ProductController extends Controller
                 'image' => 'nullable|image',
             ]);
 
+            // tricky: unset($validated['image']) が必須
+            // → 忘れると UploadedFile オブジェクトを DB に保存しようとしてエラーになる
             unset($validated['image']);
 
             if ($product->image_path) {
@@ -130,9 +144,11 @@ class ProductController extends Controller
                 );
 
                 $validated['image_path'] = $path;
+            // fix: 元コードでは $validated['image_path'] = null が if の外にあり、新画像のパスも null で上書きされていた
+            // → else に移動し、画像未指定時のみ null を設定するようにした
+            } else {
+                $validated['image_path'] = null;
             }
-
-            $validated['image_path'] = null;
 
             $product->update($validated);
             return redirect()->route('products.index');
@@ -162,6 +178,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        // tricky: 画像削除を DB 削除より先に実行する
+        // → 逆順だと $product->delete() 後に $product->image_path が参照不可になる
         if ($product->image_path) {
             Storage::disk('public')->delete($product->image_path);
         }

@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('weight_unit',10);
             $table->string('image_path',512)->nullable();
             $table->boolean('is_hidden')->default(false);
+            // smart: onDelete('cascade') で企業削除時に商品を自動削除
+            // → アプリ側の明示的な削除コードが不要になる
             $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
             $table->timestamps();
         });

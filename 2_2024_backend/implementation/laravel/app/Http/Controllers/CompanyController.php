@@ -112,6 +112,8 @@ class CompanyController extends Controller
         $company->update([
             'is_active' => false,
         ]);
+        // smart: $company->products()->update() でリレーション経由の一括更新
+        // → ループ不要で 1 クエリで全商品を非表示にできる
         $company->products()->update([
             'is_hidden' => true,
         ]);

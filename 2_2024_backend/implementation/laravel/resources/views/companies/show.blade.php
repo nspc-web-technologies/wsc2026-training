@@ -46,7 +46,6 @@
             <td>
                 <form action="{{route('companies.deactivate',$company->id)}}" method="post">
                     @csrf
-                    @method('PUT')
                     <p><button type="submit">無効化</button></p>
                 </form>
             </td>
@@ -73,8 +72,8 @@
         @foreach ($company->products as $product)
         <tr>                
             <td>{{$product->id}}</td>
-            <td>{{$product->gtin}}</td>
-            <td>{{$product->name}}</td>
+            <td><a href="{{route('products.show',$product->gtin)}}">{{$product->gtin}}</a></td>
+            <td><a href="{{route('products.show',$product->gtin)}}">{{$product->name}}</a></td>
             <td>{{$product->name_in_french}}</td>
             <td>{{$product->description}}</td>
             <td>{{$product->description_in_french}}</td>
