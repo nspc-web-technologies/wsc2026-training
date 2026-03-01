@@ -2,9 +2,9 @@
 
 ## 参照
 
-- 仕様書: `../../tp/WSC2024_TP17_ME_actual_jp_final.md`
-- 採点基準: `../../tp/WSC2024_TP17_ME_making_scheme.csv`
-- 実装: `./implementation/src/`
+- 仕様書: `../tp/WSC2024_TP17_ME_actual_jp_final.md`
+- 採点基準: `../tp/WSC2024_TP17_ME_making_scheme.csv`
+- 実装: `./vue/src/`
 
 ## 方針
 
