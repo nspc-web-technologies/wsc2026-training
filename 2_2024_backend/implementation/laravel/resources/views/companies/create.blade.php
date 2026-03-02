@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('body')
-    <h1>企業情報新規登録</h1>
+    <h1>New Company Registration</h1>
     <form action="{{route('companies.store')}}" method="post">
         @csrf
         <p><label for="company_name">company_name:<input value="{{old('company_name')}}" type="text" name="company_name" id="company_name"></label></p>
@@ -14,9 +14,9 @@
         <p><label for="contact_name">contact_name:<input value="{{old('contact_name')}}" type="text" name="contact_name" id="contact_name"></label></p>
         <p><label for="contact_mobile_number">contact_mobile_number:<input value="{{old('contact_mobile_number')}}" type="text" name="contact_mobile_number" id="contact_mobile_number"></label></p>
         <p><label for="contact_email_address">contact_email_address:<input value="{{old('contact_email_address')}}" type="text" name="contact_email_address" id="contact_email_address"></label></p>
-        <p><button type="submit">登録</button></p>
+        <p><button type="submit">Register</button></p>
     </form>
     @if ($errors->any())
-        <p>エラーが発生しました</p>
+        <p>An error occurred</p>
     @endif
 @endsection

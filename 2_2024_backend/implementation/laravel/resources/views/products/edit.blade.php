@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('body')
-    <h1>商品情報編集</h1>
+    <h1>Edit Product</h1>
     <form action="{{route('products.update',$product->gtin)}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -25,9 +25,9 @@
                 </select>
             </label>
         </p>
-        <p><button type="submit">保存</button></p>
+        <p><button type="submit">Save</button></p>
     </form>
     @if ($errors->any())
-        <p>エラーが発生しました</p>
+        <p>An error occurred</p>
     @endif
 @endsection

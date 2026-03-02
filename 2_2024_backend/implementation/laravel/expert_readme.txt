@@ -1,3 +1,3 @@
-本アプリケーションは既に指定環境下で動作するように構成されています。
+This application is already configured to run in the specified environment.
 URL:http://localhost:8082/17_module_b/login
-ブラウザより上記URLにアクセスし、各機能の動作をご確認ください。
+Access the URL above in a browser to verify the operation of each feature.

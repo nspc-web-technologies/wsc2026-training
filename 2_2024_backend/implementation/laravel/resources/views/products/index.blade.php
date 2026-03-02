@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('body')
-    <h1>商品情報一覧</h1>
+    <h1>Product List</h1>
     <form action="{{route('companies.index')}}" method="get">
-        <p><button type="submit">企業情報一覧へ</button></p>
+        <p><button type="submit">Company List</button></p>
     </form>
     <form action="{{route('products.create')}}" method="get">
-        <p><button type="submit">商品情報新規作成</button></p>
+        <p><button type="submit">New Product</button></p>
     </form>
     <table>
         <tr>
@@ -27,7 +27,7 @@
             <th></th>
         </tr>
         @foreach ($products as $product)
-            <tr>                
+            <tr>
                 <td>{{$product->id}}</td>
                 <td>{{$product->gtin}}</td>
                 <td><a href="{{route('products.show',$product->gtin)}}">{{$product->name}}</a></td>
@@ -48,7 +48,7 @@
                 <td>{{$product->updated_at}}</td>
                 <td>
                     <form action="{{route('products.edit',$product->gtin)}}" method="get">
-                        <p><button type="submit">編集</button></p>
+                        <p><button type="submit">Edit</button></p>
                     </form>
                 </td>
                 <td>
@@ -56,12 +56,12 @@
                     <form action="{{route('products.destroy',$product->gtin)}}" method="post">
                         @csrf
                         @method('DELETE')
-                        <p><button type="submit">削除</button></p>
+                        <p><button type="submit">Delete</button></p>
                     </form>
                     @else
                     <form action="{{route('products.hide',$product->gtin)}}" method="post">
                         @csrf
-                        <p><button type="submit">非表示</button></p>
+                        <p><button type="submit">Hide</button></p>
                     </form>
                     @endif
                 </td>
@@ -69,6 +69,6 @@
         @endforeach
     </table>
     @if ($errors->any())
-        <p>エラーが発生しました</p>
+        <p>An error occurred</p>
     @endif
 @endsection

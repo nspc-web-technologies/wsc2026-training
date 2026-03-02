@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('body')
-    <h1>商品情報詳細</h1>
+    <h1>Product Details</h1>
     <form action="{{route('products.index')}}" method="get">
-        <p><button type="submit">戻る</button></p>
+        <p><button type="submit">Back</button></p>
     </form>
     <table>
         <tr>
@@ -23,7 +23,7 @@
             <th>updated_at</th>
             <th></th>
         </tr>
-        <tr>                
+        <tr>
             <td>{{$product->id}}</td>
             <td>{{$product->gtin}}</td>
             <td>{{$product->name}}</td>
@@ -44,7 +44,7 @@
             <td>{{$product->updated_at}}</td>
             <td>
                 <form action="{{route('products.edit',$product->gtin)}}" method="get">
-                    <p><button type="submit">編集</button></p>
+                    <p><button type="submit">Edit</button></p>
                 </form>
             </td>
             <td>
@@ -52,18 +52,18 @@
                 <form action="{{route('products.destroy',$product->gtin)}}" method="post">
                     @csrf
                     @method('DELETE')
-                    <p><button type="submit">削除</button></p>
+                    <p><button type="submit">Delete</button></p>
                 </form>
                 @else
                 <form action="{{route('products.hide',$product->gtin)}}" method="post">
                     @csrf
-                    <p><button type="submit">非表示</button></p>
+                    <p><button type="submit">Hide</button></p>
                 </form>
                 @endif
             </td>
         </tr>
     </table>
     @if ($errors->any())
-        <p>エラーが発生しました</p>
+        <p>An error occurred</p>
     @endif
 @endsection

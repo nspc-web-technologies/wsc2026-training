@@ -53,7 +53,7 @@ class CompanyController extends Controller
         // 競技用 エラーを握りつぶしてデバッグを容易に
         } catch (\Throwable $th) {
             // dd($th);
-            return back()->withErrors('エラーです')->withInput();
+            return back()->withErrors('An error occurred')->withInput();
         }
     }
     /**
@@ -95,7 +95,7 @@ class CompanyController extends Controller
         // 競技用 エラーを握りつぶしてデバッグを容易に
         } catch (\Throwable $th) {
             // dd($th);
-            return back()->withErrors('エラーです')->withInput();
+            return back()->withErrors('An error occurred')->withInput();
         }
     }
 

@@ -16,7 +16,7 @@ class AuthController extends Controller
             $request->session()->put('passphrase',$validated['passphrase']);
             return redirect()->route('companies.index');
         }else{
-            return back()->withErrors('パスフレーズが正しくありません');
+            return back()->withErrors('Incorrect passphrase');
         }
     }
 

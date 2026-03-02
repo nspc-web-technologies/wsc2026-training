@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('body')
-    <h1>商品情報新規登録</h1>
+    <h1>New Product Registration</h1>
     <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <p><label for="gtin">gtin:<input value="{{old('gtin')}}" type="text" name="gtin" id="gtin"></label></p>
@@ -24,9 +24,9 @@
                 </select>
             </label>
         </p>
-        <p><button type="submit">登録</button></p>
+        <p><button type="submit">Register</button></p>
     </form>
     @if ($errors->any())
-        <p>エラーが発生しました</p>
+        <p>An error occurred</p>
     @endif
 @endsection

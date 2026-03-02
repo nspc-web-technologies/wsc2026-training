@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('body')
-    <h1>企業情報詳細</h1>
+    <h1>Company Details</h1>
     <form action="{{route('companies.index')}}" method="get">
-        <p><button type="submit">戻る</button></p>
+        <p><button type="submit">Back</button></p>
     </form>
-    <h2>企業情報</h2>
+    <h2>Company Information</h2>
     <table>
         <tr>
             <th>id</th>
@@ -24,7 +24,7 @@
             <th></th>
             <th></th>
         </tr>
-        <tr>                
+        <tr>
             <td>{{$company->id}}</td>
             <td>{{$company->company_name}}</td>
             <td>{{$company->company_address}}</td>
@@ -40,18 +40,18 @@
             <td>{{$company->updated_at}}</td>
             <td>
                 <form action="{{route('companies.edit',$company->id)}}" method="get">
-                    <p><button type="submit">編集</button></p>
+                    <p><button type="submit">Edit</button></p>
                 </form>
             </td>
             <td>
                 <form action="{{route('companies.deactivate',$company->id)}}" method="post">
                     @csrf
-                    <p><button type="submit">無効化</button></p>
+                    <p><button type="submit">Deactivate</button></p>
                 </form>
             </td>
         </tr>
     </table>
-    <h2>関連製品</h2>
+    <h2>Related Products</h2>
         <table>
         <tr>
             <th>id</th>
@@ -70,7 +70,7 @@
             <th>updated_at</th>
         </tr>
         @foreach ($company->products as $product)
-        <tr>                
+        <tr>
             <td>{{$product->id}}</td>
             <td><a href="{{route('products.show',$product->gtin)}}">{{$product->gtin}}</a></td>
             <td><a href="{{route('products.show',$product->gtin)}}">{{$product->name}}</a></td>
@@ -93,6 +93,6 @@
         @endforeach
     </table>
     @if ($errors->any())
-        <p>エラーが発生しました</p>
+        <p>An error occurred</p>
     @endif
 @endsection

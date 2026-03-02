@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
 @section('body')
-    <h1>企業情報一覧</h1>
+    <h1>Company List</h1>
     <form action="{{route('logout')}}" method="post">
         @csrf
-        <p><button type="submit">ログアウト</button></p>
+        <p><button type="submit">Logout</button></p>
     </form>
     <form action="{{route('products.index')}}" method="get">
-        <p><button type="submit">商品情報一覧へ</button></p>
+        <p><button type="submit">Product List</button></p>
     </form>
     <form action="{{route('companies.create')}}" method="get">
-        <p><button type="submit">企業情報新規登録</button></p>
+        <p><button type="submit">New Company</button></p>
     </form>
     <form action="{{route('companies.deactivated')}}" method="get">
-        <p><button type="submit">無効企業リストへ</button></p>
+        <p><button type="submit">Deactivated Companies</button></p>
     </form>
     <table>
         <tr>
@@ -34,7 +34,7 @@
             <th></th>
         </tr>
         @foreach ($companies as $company)
-            <tr>                
+            <tr>
                 <td>{{$company->id}}</td>
                 <td><a href="{{route('companies.show',$company->id)}}">{{$company->company_name}}</a></td>
                 <td>{{$company->company_address}}</td>
@@ -50,19 +50,19 @@
                 <td>{{$company->updated_at}}</td>
                 <td>
                     <form action="{{route('companies.edit',$company->id)}}" method="get">
-                        <p><button type="submit">編集</button></p>
+                        <p><button type="submit">Edit</button></p>
                     </form>
                 </td>
                 <td>
                     <form action="{{route('companies.deactivate',$company->id)}}" method="post">
                         @csrf
-                        <p><button type="submit">無効化</button></p>
+                        <p><button type="submit">Deactivate</button></p>
                     </form>
                 </td>
             </tr>
         @endforeach
     </table>
     @if ($errors->any())
-        <p>エラーが発生しました</p>
+        <p>An error occurred</p>
     @endif
 @endsection
