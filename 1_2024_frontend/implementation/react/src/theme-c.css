@@ -1,0 +1,36 @@
+/* enter: 下から入場 */
+.themeC-enter {
+  transform: translateY(100%);
+}
+
+.themeC-enter-active {
+  transition: all 0.5s ease;
+  transform: translateY(0);
+}
+
+/* exit: 上に退場 */
+.themeC-exit-active {
+  transition: all 0.5s ease;
+  transform: translateY(-100%);
+}
+
+/* figcaption */
+.themeC-enter figcaption {
+  transform: translateY(100%);
+}
+
+.themeC-enter-active figcaption {
+  transition: all 0.5s ease;
+  transform: translateY(0);
+}
+
+/* 単語ごとのカスケード遅延 */
+.themeC-enter figcaption span {
+  transform: translateY(calc(100% + 8px));
+}
+
+.themeC-enter-active figcaption span {
+  transition: all 0.5s ease;
+  transition-delay: calc(300ms * var(--i));
+  transform: translateY(0);
+}

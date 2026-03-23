@@ -1,0 +1,17 @@
+.load-image {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.drop-zone {
+  border: 2px dashed #acacac;
+  background: #efefef;
+  width: fit-content;
+  padding: 32px;
+}
+
+/* CSSが無効になった時出現 */
+.input-file {
+  display: none;
+}

@@ -1,0 +1,26 @@
+/* enter: 円形拡大 */
+.themeF-enter {
+  clip-path: circle(0);
+}
+
+.themeF-enter-active {
+  transition: all 1s ease;
+  clip-path: circle(100%);
+}
+
+/* exit: 円形縮小 */
+.themeF-exit-active {
+  transition: all 1s ease;
+  clip-path: circle(0);
+}
+
+/* figcaption 遅延入場 */
+.themeF-enter figcaption {
+  transform: translateY(100%);
+}
+
+.themeF-enter-active figcaption {
+  transition: all 0.5s ease;
+  transition-delay: 1s;
+  transform: translateY(0);
+}
