@@ -1,0 +1,40 @@
+.themeE-slide-show .slide .left {
+  clip-path: inset(0 49% 0 0);
+  transform-origin: center left;
+}
+
+.themeE-slide-show .slide .right {
+  clip-path: inset(0 0 0 49%);
+  transform-origin: center right;
+}
+
+/* enter: 下のレイヤーに潜り込み */
+.themeE-enter {
+  z-index: 390;
+}
+
+.themeE-enter-active {
+  transition: all 0.5s ease;
+  z-index: 400;
+}
+
+/* exit: ドアが開くように */
+.themeE-exit-active {
+  transition: all 0.5s ease;
+  z-index: 400;
+}
+
+.themeE-enter-active .left,
+.themeE-enter-active .right,
+.themeE-exit-active .left,
+.themeE-exit-active .right {
+  transition: all 0.5s ease;
+}
+
+.themeE-exit-active .left {
+  transform: rotateY(90deg);
+}
+
+.themeE-exit-active .right {
+  transform: rotateY(-90deg);
+}

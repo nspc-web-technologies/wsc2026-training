@@ -4,13 +4,14 @@
 
 - 仕様書: `../tp/WSC2024_TP17_ME_actual_jp_final.md`
 - 採点基準: `../tp/WSC2024_TP17_ME_making_scheme.csv`
-- 実装: `./vue/src/`
+- React 実装: `./react/src/`
+- Vue 実装: `./vue/src/`
 
-## 方針
+## 方針（共通）
 
-- セクションは依存関係順に並んでいる。`HomeView.vue` の `provide` が先、`inject` する子コンポーネントが後
-- `HomeView.vue` は「骨格」「手動送り・CommandBar 開閉」「自動再生・並び替え」の3セクションに分割されており、後から追加する機能を後回しにできる
-- `SlideShow.vue` と `LoadImage.vue` はテーマ CSS の動作確認に必要なため、テーマ CSS より前に配置
+- セクションは依存関係順に並んでいる。状態コンテナ（HomeView）が先、子コンポーネントが後
+- HomeView は「骨格」「手動送り・CommandBar 開閉」「自動再生・並び替え」の3セクションに分割されており、後から追加する機能を後回しにできる
+- SlideShow と LoadImage はテーマ CSS の動作確認に必要なため、テーマ CSS より前に配置
 - テーマ CSS はコンポーネントが揃い画像をロードできるようになってから取り組む。Theme F を含む全6テーマを実装する
 
 ## 学習用コメント
@@ -33,12 +34,167 @@
 
 ## ステータス
 
-- ✅ 実装済み・正しい: 78
+### React
+
+- ✅ 実装済み・正しい: 97
 - 🚧 実装したがバグあり（修正が必要）: 0
 - ❌ 未実装（これから書く）: 0
 - 👀 動作確認が必要（ブラウザで目視確認）: 31
 
-## 実装手順・チェックリスト
+### Vue
+
+- ✅ 実装済み・正しい: 97
+- 🚧 実装したがバグあり（修正が必要）: 0
+- ❌ 未実装（これから書く）: 0
+- 👀 動作確認が必要（ブラウザで目視確認）: 32
+
+## React 実装手順・チェックリスト
+
+- ✅ プロジェクト初期設定
+  - ✅ React プロジェクトを作成する（`@vitejs/plugin-react`）
+  - ✅ Vite の `base` にコンテスト番号付きパスを設定する
+  - ✅ `BrowserRouter` に `basename={import.meta.env.BASE_URL}` を渡す（`base` 設定が自動反映される）
+  - ✅ テーマ CSS ファイルを A〜F の 6 つ作成する（空ファイル）
+  - ✅ `main.jsx` で 6 つのテーマ CSS を import する
+  - ✅ `public/` を Vue 版からコピーする（サンプル画像 4 枚 + vite.svg）
+  - 👀 確認: `http://localhost:5173/XX_module_e/` でページが開く
+
+- ✅ `HomeView.jsx` — state・props・JSX 骨格
+  - ✅ テーマ一覧を `{ ja, en }` 配列でモジュールスコープの定数として定義する（A〜F の 6 テーマ。レンダーごとに再生成されないよう関数外に置く）
+  - ✅ state を `useState` で定義する
+    - ✅ 画像リスト・現在のインデックス・スライドカウントを初期化する
+    - ✅ 再生モードインデックスを定義する（選択肢は `<option>` 直書き）
+    - ✅ コマンドバー開閉・設定パネル開閉フラグを初期化する
+  - ✅ レンダリング不要な値を `useRef` で保持する（タイマー ID・次の ID・ドラッグ用 ID）
+  - ✅ stale closure 対策: `imageList`, `currentImageIndex`, `isOpenCommandBar`, `currentPlayingModeIndex` を `useRef` に毎レンダーで同期する
+  - ✅ `addImageList` を `useCallback` で安定化する — 関数 updater `setImageList(prev => ...)` + `nextImageListIdRef.current++` で stale closure を回避
+  - ✅ Vue の `provide/inject` → 子コンポーネントに props として直接渡す
+  - ✅ JSX に `<SlideShow>`・`<LoadImage>`・設定パネル・`{isOpenCommandBar && <CommandBar>}` を配置する
+  - ✅ 操作モード選択の `<select>` — `value` + `onChange` + `Number(e.target.value)` で数値変換する（`e.target.value` は string）
+  - ✅ テーマ選択の `<select>` — 同上
+  - 👀 確認: `<SlideShow>`・`<LoadImage>` がエラーなく表示される
+  - 👀 確認: テーマ選択 `<select>` を変えると React DevTools で `currentThemeIndex` が変わる
+
+- ✅ `LoadImage.jsx`
+  - ✅ `addImageList` を props で受け取る
+  - ✅ ドロップゾーンを実装する — `onDrop` + `onDragOver={(e) => e.preventDefault()}`。`dataTransfer.files` をスプレッドし各ファイルを処理
+  - ✅ ファイル選択 input（`multiple`）を実装する — Vue の `@input` は React では `onChange` に正規化される
+  - ✅ サンプル読み込みボタンを実装する — `import.meta.env.BASE_URL` + パスで画像を追加する
+  - ✅ `readAndConvertImage` を実装する — `FileReader` で base64 変換してから追加する
+  - ✅ ファイル名からキャプションを生成する: 区切り文字で分割 → 拡張子を除去 → 先頭大文字化 → スペース結合
+  - ✅ ファイル input を CSS で非表示にする（CSS 無効時に表示される仕様）
+  - 👀 確認: ファイル選択・ドロップ・サンプルボタンで `imageList` に画像が追加される
+  - 👀 確認: キャプションがスラッグなし・先頭大文字で生成されている
+  - 👀 確認: CSS を無効にすると `<input type="file">` が表示される
+
+- ✅ `SlideShow.jsx`
+  - ✅ 必要なデータを props で受け取る（テーマ・画像リスト・インデックス・スライドカウント）
+  - ✅ `.slide-window` を relative + overflow hidden にする
+  - ✅ `.slide` を absolute + 100% サイズにする
+  - ✅ `.slide-show` にテーマ名ベースのクラスを `className` で動的に付与する
+  - ✅ Vue `<Transition :name>` → `<TransitionGroup component={null}>` + `<CSSTransition key classNames timeout nodeRef>` で実現する
+    - ✅ `TransitionGroup` は前回レンダーの要素を内部 state に保持し exit 時にそれを clone するため、`useMemo(() => ({current: null}), [slideKey])` で key ごとに新しい ref を生成すれば enter/exit 両方の nodeRef が独立して動作する
+    - ✅ `themeTimeouts` をテーマごとに定義する（Vue は `transitionend` 自動検出だが `CSSTransition` は明示的 `timeout` が必要）
+  - ✅ Theme E 以外: `<CSSTransition>` に `key` として `${currentImageIndex}-${slideCount}` を設定する。`--r` に 0〜10 のランダム値を `useMemo` で slideKey に紐づけて生成する
+    - ✅ `<img>` と `<figcaption>` を内包する
+    - ✅ `<figcaption>` 内の単語を `<span>` に分割し `style={{ '--i': index + 1 }}` を付与する
+  - ✅ Theme E のみ: `<div className="slide">` + 同じ画像を 2 枚（左右 clip 用）。figcaption は不要
+  - ✅ フルスクリーンボタンを実装する — `useRef` で `.slide-window` を参照し `requestFullscreen()` する
+  - 👀 確認: サンプル読み込み後に画像がスライドに表示される
+  - 👀 確認: フルスクリーンボタンで全画面になる
+  - 👀 確認: `figcaption` の `<span>` に `--i` が付いている（DevTools で確認）
+
+- ✅ `HomeView.jsx` — 手動送り・CommandBar 開閉
+  - ✅ `useEffect(fn, [])` でグローバル `keydown` リスナーを登録し、cleanup で解除する
+  - ✅ キーハンドラを実装する: `←`/`→`（手動送り）、`Ctrl+K`（開く）、`/`（閉じているときのみ開く）、`Escape`（閉じる）
+  - ✅ stale closure 対策: キーハンドラ内の state 参照はすべて `useRef` 経由にする（`currentPlayingModeIndexRef`, `isOpenCommandBarRef` 等）
+  - ✅ `←`/`→` に「手動モードかつコマンドバーが閉じている」二重ガードを ref 経由で付ける
+  - ✅ `/` キーにコマンドバー閉時ガードを付ける
+  - ✅ `manualSlideshow(delta)` を実装する — `imageListRef.current.length` でガード後、関数 updater でクランプする
+  - ✅ `currentImageIndex` 変更時の `slideCount` インクリメントをレンダー中の同期 `setState` で実装する（`useEffect` だと1フレーム遅延して `slideKey` が二重変更される）
+  - 👀 確認: `←``→` キーで画像が切り替わる
+  - 👀 確認: `Ctrl+K` または `/` で CommandBar が開く
+
+- ✅ `CommandBar.jsx`
+  - ✅ setter 関数を props で受け取る（`setIsOpenCommandBar`, `setCurrentThemeIndex`, `setCurrentPlayingModeIndex`）
+  - ✅ ローカル state にコマンド選択インデックス・検索クエリを定義する。コマンド一覧はモジュールスコープに定義する
+  - ✅ `filteredCommandList` を `useMemo` で実装する — `[query]` を deps に指定
+  - ✅ query 変更時のインデックスリセットをレンダー中の同期処理で実装する（`prevQueryRef` で前回値と比較）
+  - ✅ stale closure 対策: `filteredCommandList` と `currentCommandIndex` を `useRef` に同期し、`executeCommand` 内で ref 経由で参照する
+  - ✅ 検索 input に `autoFocus`（React camelCase）を付ける
+  - ✅ 選択中の項目に `className` で active クラスを付与する
+  - ✅ 背景を `position: fixed; inset: 0` の半透明オーバーレイにする
+  - ✅ `useEffect(fn, [])` で `keydown` リスナーを登録し、cleanup で解除する
+  - ✅ `↑`/`↓` で関数 updater を使いインデックスを増減する
+  - ✅ `Enter` で `executeCommand()` を実行する
+  - ✅ `executeCommand()` を実装する — `filteredRef.current[indexRef.current]` で switch 分岐し、setter props で親の値を更新する
+  - ✅ コマンド実行後に `setIsOpenCommandBar(false)` でコマンドバーを閉じる。`{isOpenCommandBar && <CommandBar>}` のため DOM ごと破棄されクエリが自動リセットされる
+  - 👀 確認: コマンドバーが閉じている状態で `Ctrl+K` または `/` を押すと開き、背景が暗くなる
+  - 👀 確認: 文字を入力するとリストが絞り込まれる
+  - 👀 確認: `↑↓` でハイライトが移動する
+  - 👀 確認: `Enter` でテーマ・モードが切り替わりコマンドバーが閉じる
+  - 👀 確認: `ESC` でコマンドバーが閉じる
+
+- ✅ テーマ CSS — Vue → react-transition-group クラス名変換
+  - ✅ クラス名マッピング: `enter-from` → `enter`、`enter-active` → `enter-active`（明示的な最終状態を追加）、`leave-active` → `exit-active`（transition 定義）、`leave-to` → `exit-active` に統合（end-state を統合）
+  - ✅ react-transition-group では `enter` クラスが残り続けるため、`enter-active` に明示的な最終状態（例: `transform: translateX(0)`）を追加する必要がある
+  - ✅ Theme A
+    - ✅ 空ファイルのままでよい
+    - 👀 確認: キャプションが表示されている
+  - ✅ Theme B
+    - ✅ 入場は左から、退場は右へ（`translateX`）
+    - ✅ `.themeB-enter { transform: translateX(-100%) }` + `.themeB-enter-active { transition + transform: translateX(0) }`
+    - ✅ `.themeB-exit-active { transition + transform: translateX(100%) }`
+    - ✅ figcaption は 300ms 遅延で入場 — `enter` と `enter-active` の両方に figcaption ルールを追加する
+    - 👀 確認: 左から入り・右に出る
+    - 👀 確認: キャプションが少し遅れて入場する
+  - ✅ Theme C
+    - ✅ 入場は下から、退場は上へ（`translateY`）
+    - ✅ `.themeC-enter { transform: translateY(100%) }` + `.themeC-enter-active { transition + transform: translateY(0) }`
+    - ✅ `.themeC-exit-active { transition + transform: translateY(-100%) }`
+    - ✅ figcaption も下から入場させる — `enter` で `translateY(100%)`、`enter-active` で `translateY(0)`
+    - ✅ 各 span に `--i` を使った連鎖 delay — `enter` で `translateY(calc(100% + 8px))`、`enter-active` で `translateY(0)` + `transition-delay`
+    - 👀 確認: 下から入り・上に出る
+    - 👀 確認: キャプションの単語が1つずつ時間差で入場する
+  - ✅ Theme D
+    - ✅ コンテナスタイル（黒背景・85%・中央寄せ・`translate`/`rotate` 個別プロパティ）はそのまま。中央寄せには `translate` 個別プロパティを使う（`transform` のトランジションと競合しないため）
+    - ✅ 入場は左から、退場も左へ（仕様「Go out to left」に対応）
+    - ✅ `.themeD-enter { transform: translateX(-100%) }` + `.themeD-enter-active { transition + transform: translateX(0) }`
+    - ✅ `.themeD-exit-active { transition + transition-delay: 300ms + transform: translateX(-100%) }`
+    - ✅ figcaption を写真幅いっぱいにする（`width: 100%; border-radius: 0`）
+    - 👀 確認: 写真が中央に表示されランダムに傾いている
+    - 👀 確認: 左から入り・左に出る
+  - ✅ Theme E（※ SlideShow の `<div className="slide">` 構造を使う）
+    - ✅ 左半分を `clip-path: inset(0 49% 0 0)` + `transform-origin: center left`、右半分を `clip-path: inset(0 0 0 49%)` + `transform-origin: center right` で切り出す
+    - ✅ `.themeE-enter { z-index: 390 }` + `.themeE-enter-active { transition + z-index: 400 }`
+    - ✅ `.themeE-exit-active { transition + z-index: 400 }`
+    - ✅ 左右それぞれに 0.5s ease のトランジションを設定する
+    - ✅ `.themeE-exit-active .left { rotateY(90deg) }` + `.right { rotateY(-90deg) }`
+    - 👀 確認: 退場時に左右に開いて消える
+    - 👀 確認: 入場スライドが退場スライドの下から現れる
+  - ✅ Theme F
+    - ✅ `.themeF-enter { clip-path: circle(0) }` + `.themeF-enter-active { transition: all 1s ease + clip-path: circle(100%) }`（明示的な最終状態が必須。Vue では `enter-from` 除去で自然に戻るが react-transition-group では `enter` が残るため）
+    - ✅ `.themeF-exit-active { transition: all 1s ease + clip-path: circle(0) }`
+    - ✅ figcaption は 1s 遅延で `translateY` 入場
+    - 👀 確認: 入場・退場ともに円形アニメーションが動く
+    - 👀 確認: キャプションが写真入場後に遅れて下から登場する
+
+- ✅ `HomeView.jsx` — 自動再生・並び替え
+  - ✅ `useEffect` の cleanup で `clearInterval` する
+  - ✅ `currentPlayingModeIndex` を deps に持つ `useEffect` で `clearInterval` → モードに応じて `setInterval` を再設定する
+  - ✅ `autoSlideshow()` を実装する — `imageListRef.current.length` でガード後、関数 updater + 剰余でループ送り
+  - ✅ `randomSlideshow()` を実装する — `imageListRef.current.length > 1` でガード後、関数 updater + do-while で前回と異なるインデックスを選ぶ
+  - ✅ `isOpenConfigPanel` を `useState` で管理し、ボタンクリックで `prev => !prev` トグルする
+  - ✅ 設定パネルを `style={{ display: isOpenConfigPanel ? '' : 'none' }}` で開閉制御する（Vue の `v-show` と同等）
+  - ✅ 並び替えリストを plain `<ul>` + `draggable` + ドラッグイベントで実装する（react-transition-group は FLIP 非対応のため move アニメーションは省略。機能は同一）
+  - ✅ `onDragStart` でドラッグ元のインデックスを `isDragedIdRef` に保存する
+  - ✅ `orderSlideShowOnDrop` を関数 updater `setImageList(prev => ...)` で実装する — `splice` で要素を取り出してドロップ先に挿入
+  - 👀 確認: 自動再生モードに切り替えると 3 秒ごとに画像が進む
+  - 👀 確認: ランダム再生モードで同じ画像が連続しない
+  - 👀 確認: 設定ボタンで設定パネルが開閉する
+  - 👀 確認: 並び替えリストのドラッグで順序が変わり、スライドの順序も変わる
+
+## Vue 実装手順・チェックリスト
 
 - ✅ プロジェクト初期設定
   - ✅ Vue プロジェクトを作成する（Router のみ選択）

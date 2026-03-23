@@ -1,0 +1,97 @@
+services:
+  # Apache + PHP application server
+  apache:
+    build: ./apache
+    container_name: apache_php
+    restart: always
+    ports:
+      - "${HTTP_PORT}:80"
+    volumes:
+      - web_data:/var/www/html
+      - ./apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      - TZ=UTC
+      - DB_HOST=mariadb
+      - DB_USER=${MYSQL_USER}
+      - DB_PASSWORD=${MYSQL_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "curl -so /dev/null -w '%{http_code}' http://localhost/ | grep -qE '^(200|301|302|403)$'"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  # MariaDB database server
+  mariadb:
+    image: mariadb:11
+    container_name: mariadb
+    restart: always
+    ports:
+      - "${MARIADB_PORT}:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./mariadb/init.sh:/docker-entrypoint-initdb.d/init.sh
+    environment:
+      - TZ=UTC
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  # SSH server for file management and remote access
+  ssh:
+    build: ./ssh
+    container_name: ssh_server
+    restart: always
+    ports:
+      - "${SSH_PORT}:2222"
+    volumes:
+      # Share web root with Apache container
+      - web_data:/var/www/html
+      # Persist SSH host keys across container recreates
+      - ssh_config:/config
+    environment:
+      - PUID=33
+      - PGID=33
+      - TZ=UTC
+      - USER_NAME=${SSH_USER}
+      - USER_PASSWORD=${SSH_PASSWORD}
+      - PASSWORD_ACCESS=true
+      - SUDO_ACCESS=${SSH_SUDO_ACCESS}
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "2222"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  # phpMyAdmin database management UI
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "${PMA_PORT}:80"
+    environment:
+      - PMA_HOST=mariadb
+      - PMA_PORT=3306
+      - UPLOAD_LIMIT=64M
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+volumes:
+  # Shared volume between Apache and SSH containers
+  web_data:
+  # Persistent volume for MariaDB data
+  db_data:
+  # Persistent volume for SSH host keys
+  ssh_config:

@@ -1,0 +1,44 @@
+.slide-show {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.slide-window {
+  width: 100%;
+  height: 320px;
+  border: 1px solid #acacac;
+  background: #efefef;
+  overflow: hidden;
+  position: relative;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  z-index: 500;
+}
+
+.slide figcaption {
+  position: absolute;
+  background: #fff;
+  bottom: 0;
+  left: 0;
+  padding: 8px;
+  border-radius: 0 8px 0 0;
+  z-index: 600;
+}
+
+/* inline 要素には transform が効かない。
+ * inline-block にしないと Theme C の transform: translateY が動作しない。 */
+.slide figcaption span {
+  display: inline-block;
+}

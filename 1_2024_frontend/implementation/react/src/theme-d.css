@@ -1,0 +1,36 @@
+.themeD-slide-show .slide-window {
+  background: #000;
+}
+
+.themeD-slide-show .slide {
+  width: 85%;
+  height: 85%;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  rotate: calc(-5deg + calc(var(--r) * 1deg));
+  border: 3px solid #fff;
+  border-radius: 5px;
+}
+
+.themeD-slide-show .slide figcaption {
+  width: 100%;
+  border-radius: 0;
+}
+
+/* enter: 左から入場 */
+.themeD-enter {
+  transform: translateX(-100%);
+}
+
+.themeD-enter-active {
+  transition: all 0.5s ease;
+  transform: translateX(0);
+}
+
+/* exit: 左に退場（300ms 遅延） */
+.themeD-exit-active {
+  transition: all 0.5s ease;
+  transition-delay: 300ms;
+  transform: translateX(-100%);
+}
