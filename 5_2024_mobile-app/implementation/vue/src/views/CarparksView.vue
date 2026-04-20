@@ -1,108 +1,78 @@
-<script>
+<script setup>
+import { ref, reactive, computed, watch, inject } from "vue";
+import { useRoute } from "vue-router";
 import { getDistanceFromLatLonInKm } from "../assets/geolocation_distance";
-export default {
-  name: "carparks-view",
-  components: {
 
-  },
-  inject: [
-    "headerH1",
-    "sortMode",
-  ],
-  data() {
-    return {
-      carparks: [],
-      position: {
-        latitude: null,
-        longitude: null,
-      },
-      isfocus: false,
-      focusCarparkName: "",
-    }
-  },
-  computed: {
-    sortedCarparks() {
-      switch (this.sortMode) {
-        case 0:
-          return this.carparks.toSorted((a, b) => a.name.localeCompare(b.name));
-        case 1:
-          return this.carparks.toSorted((a, b) => getDistanceFromLatLonInKm(this.position.latitude, this.position.longitude, a.latitude, a.longitude)
-            - getDistanceFromLatLonInKm(this.position.latitude, this.position.longitude, b.latitude, b.longitude));
-      }
-    },
-    pinnedCarparks() {
-      return this.sortedCarparks.filter((carpark) => carpark.isPinned);
-    },
-    unpinnedCarparks() {
-      return this.sortedCarparks.filter((carpark) => !carpark.isPinned);
-    },
-    focusCarpark() {
-      return this.carparks.filter((carpark) => carpark.name === this.focusCarparkName)[0] || null;
-    },
-    focusCarparkDistance() {
-      return getDistanceFromLatLonInKm(this.position.latitude, this.position.longitude, this.focusCarpark.latitude, this.focusCarpark.longitude);
-    },
-  },
-  async created() {
-    this.headerH1 = "Carpark availability";
-    await this.getCarparks();
-    await this.getLocaciton();
-  },
-  mounted() {
+const route = useRoute()
+const headerH1 = inject("headerH1")
+const sortMode = inject("sortMode")
 
-  },
-  beforeUnmount() {
+const carparks = ref([])
+const position = reactive({ latitude: null, longitude: null })
+const isfocus = ref(false)
+const focusCarparkName = ref("")
 
-  },
-  watch: {
-    pinnedCarparks: {
-      handler(nVal) {
-        const pinnedCarparkNames = nVal.map((carpark) => carpark.name);
-        localStorage.setItem("pinnedCarparkNames", JSON.stringify(pinnedCarparkNames));
-      },
-      deep: true,
-    },
-  },
-  methods: {
-    async getCarparks() {
-      const url = "http://localhost:8080/module_d_api.php/carparks.json";
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Response status: ${response.status}`);
-        }
-        const result = await response.json();
-        for (const key in result) {
-          if (!Object.hasOwn(result, key)) continue;
-          const element = result[key];
-          const pinnedCarparkNames = JSON.parse(localStorage.getItem("pinnedCarparkNames") ?? "[]");
-          this.carparks.push({
-            name: key,
-            isPinned: pinnedCarparkNames.includes(key),
-            ...element,
-          });
-        }
-      } catch (error) {
-        console.error(error.message);
-      }
-    },
-    async getLocaciton() {
-      return new Promise((resolve) => {
-        if (this.$route.query.latitude != null && this.$route.query.longitude != null) {
-          this.position.latitude = this.$route.query.latitude;
-          this.position.longitude = this.$route.query.longitude;
-          resolve();
-        } else {
-          navigator.geolocation.getCurrentPosition((position) => {
-            this.position.latitude = position.coords.latitude;
-            this.position.longitude = position.coords.longitude;
-            resolve();
-          });
-        }
+headerH1.value = "Carpark availability"
+
+const sortedCarparks = computed(() => {
+  switch (sortMode.value) {
+    case 0:
+      return carparks.value.toSorted((a, b) => a.name.localeCompare(b.name));
+    case 1:
+      return carparks.value.toSorted((a, b) =>
+        getDistanceFromLatLonInKm(position.latitude, position.longitude, a.latitude, a.longitude)
+        - getDistanceFromLatLonInKm(position.latitude, position.longitude, b.latitude, b.longitude));
+  }
+})
+
+const pinnedCarparks = computed(() => sortedCarparks.value.filter((c) => c.isPinned))
+const unpinnedCarparks = computed(() => sortedCarparks.value.filter((c) => !c.isPinned))
+const focusCarpark = computed(() => carparks.value.find((c) => c.name === focusCarparkName.value) || null)
+const focusCarparkDistance = computed(() =>
+  getDistanceFromLatLonInKm(position.latitude, position.longitude, focusCarpark.value.latitude, focusCarpark.value.longitude))
+
+watch(pinnedCarparks, (nVal) => {
+  const pinnedCarparkNames = nVal.map((c) => c.name);
+  localStorage.setItem("pinnedCarparkNames", JSON.stringify(pinnedCarparkNames));
+}, { deep: true })
+
+async function getCarparks() {
+  const url = "http://localhost:8080/module_d_api.php/carparks.json";
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Response status: ${response.status}`);
+    const result = await response.json();
+    const pinnedCarparkNames = JSON.parse(localStorage.getItem("pinnedCarparkNames") ?? "[]");
+    for (const key in result) {
+      if (!Object.hasOwn(result, key)) continue;
+      carparks.value.push({
+        name: key,
+        isPinned: pinnedCarparkNames.includes(key),
+        ...result[key],
       });
-    },
-  },
+    }
+  } catch (error) {
+    console.error(error.message);
+  }
 }
+
+async function getLocation() {
+  return new Promise((resolve) => {
+    if (route.query.latitude != null && route.query.longitude != null) {
+      position.latitude = route.query.latitude;
+      position.longitude = route.query.longitude;
+      resolve();
+    } else {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        position.latitude = pos.coords.latitude;
+        position.longitude = pos.coords.longitude;
+        resolve();
+      });
+    }
+  });
+}
+
+getCarparks().then(() => getLocation())
 </script>
 
 <template>

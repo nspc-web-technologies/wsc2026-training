@@ -1,38 +1,11 @@
-<script>
-export default {
-  name: "settings-view",
-  components: {
+<script setup>
+import { inject } from "vue";
 
-  },
-  inject: [
-    "headerH1",
-    "themeMode",
-    "sortMode",
-  ],
-  data() {
-    return {
+const headerH1 = inject("headerH1")
+const themeMode = inject("themeMode")
+const sortMode = inject("sortMode")
 
-    }
-  },
-  computed: {
-
-  },
-  async created() {
-    this.headerH1 = "Setting";
-  },
-  mounted() {
-
-  },
-  beforeUnmount() {
-
-  },
-  watch: {
-
-  },
-  methods: {
-
-  },
-}
+headerH1.value = "Setting"
 </script>
 
 <template>

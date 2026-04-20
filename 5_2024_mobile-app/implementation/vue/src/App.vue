@@ -1,57 +1,21 @@
-<script>
-import { toRef } from "vue";
-import { RouterLink, RouterView } from "vue-router";
-export default {
-  name: "app",
-  components: {
-    RouterView,
-    RouterLink,
-  },
-  inject: [
+<script setup>
+import { ref, computed, provide } from "vue";
 
-  ],
-  data() {
-    return {
-      headerH1: "headerH1",
-      themeMode: 0,
-      sortMode: 0,
-    }
-  },
-  provide() {
-    return {
-      headerH1: toRef(this.$data, "headerH1"),
-      themeMode: toRef(this.$data, "themeMode"),
-      sortMode: toRef(this.$data, "sortMode"),
-    }
-  },
-  computed: {
-    theme() {
-      switch (this.themeMode) {
-        case 0:
-          return "dark";
-        case 1:
-          return "light";
-        case 2:
-          return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-      }
-    }
-  },
-  async created() {
+const headerH1 = ref("headerH1")
+const themeMode = ref(0)
+const sortMode = ref(0)
 
-  },
-  mounted() {
+provide("headerH1", headerH1)
+provide("themeMode", themeMode)
+provide("sortMode", sortMode)
 
-  },
-  beforeUnmount() {
-
-  },
-  watch: {
-
-  },
-  methods: {
-
-  },
-}
+const theme = computed(() => {
+  switch (themeMode.value) {
+    case 0: return "dark"
+    case 1: return "light"
+    case 2: return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+  }
+})
 </script>
 
 <template>

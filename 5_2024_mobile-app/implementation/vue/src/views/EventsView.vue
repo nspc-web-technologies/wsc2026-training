@@ -1,84 +1,50 @@
-<script>
-export default {
-  name: "events-view",
-  components: {
+<script setup>
+import { ref, inject, watch } from "vue";
 
-  },
-  inject: [
-    "headerH1",
-  ],
-  data() {
-    return {
-      events: [],
-      beginningDate: "",
-      endingDate: "",
-    }
-  },
-  computed: {
+const headerH1 = inject("headerH1")
+const events = ref([])
+const beginningDate = ref("")
+const endingDate = ref("")
 
-  },
-  async created() {
-    this.headerH1 = "Lyon Events";
-    await this.getEvents();
-  },
-  mounted() {
+headerH1.value = "Lyon Events"
 
-  },
-  beforeUnmount() {
-
-  },
-  watch: {
-    beginningDate(){
-        this.getEvents();
-    },
-    endingDate(){
-        this.getEvents();
-    },
-  },
-  methods: {
-    async getEvents() {
-      const params = new URLSearchParams();
-      if (this.beginningDate !== ""){
-        params.append("beginning_date", this.beginningDate);
-      }
-      if (this.endingDate !== ""){
-        params.append("ending_date", this.endingDate);
-      }
-      const url = `http://localhost:8080/module_d_api.php/events.json?${params}`;
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Response status: ${response.status}`);
-        }
-        const result = await response.json();
-        this.events = result;
-      } catch (error) {
-        console.error(error.message);
-      }
-    },
-    async addEvents() {
-      const url = `http://localhost:8080${this.events.pages.next}`;
-
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Response status: ${response.status}`);
-        }
-        const result = await response.json();
-        this.events.events.push(...result.events);
-        this.events.pages = result.pages;
-      } catch (error) {
-        console.error(error.message);
-      }
-    },
-    onscrollEvents(ev) {
-      if (this.events.pages.next == null) return;
-      if (Math.abs(ev.target.scrollHeight - ev.target.clientHeight - ev.target.scrollTop) <= 500) {
-        this.addEvents();
-      }
-    },
-  },
+async function getEvents() {
+  const params = new URLSearchParams();
+  if (beginningDate.value !== "") params.append("beginning_date", beginningDate.value);
+  if (endingDate.value !== "") params.append("ending_date", endingDate.value);
+  const url = `http://localhost:8080/module_d_api.php/events.json?${params}`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Response status: ${response.status}`);
+    events.value = await response.json();
+  } catch (error) {
+    console.error(error.message);
+  }
 }
+
+async function addEvents() {
+  const url = `http://localhost:8080${events.value.pages.next}`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Response status: ${response.status}`);
+    const result = await response.json();
+    events.value.events.push(...result.events);
+    events.value.pages = result.pages;
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+function onscrollEvents(ev) {
+  if (events.value.pages.next == null) return;
+  if (Math.abs(ev.target.scrollHeight - ev.target.clientHeight - ev.target.scrollTop) <= 500) {
+    addEvents();
+  }
+}
+
+watch([beginningDate, endingDate], () => getEvents())
+
+getEvents()
 </script>
 
 <template>

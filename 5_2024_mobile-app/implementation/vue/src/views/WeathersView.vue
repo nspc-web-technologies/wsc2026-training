@@ -1,48 +1,25 @@
-<script>
-export default {
-  name: "weathers-view",
-  components: {
+<script setup>
+import { ref, inject } from "vue";
 
-  },
-  inject: [
-    "headerH1",
-  ],
-  data() {
-    return {
-      weathers: [],
+const headerH1 = inject("headerH1")
+const weathers = ref([])
+
+headerH1.value = "Weather"
+
+async function getWeathers() {
+  const url = "http://localhost:8080/module_d_api.php/weather.json";
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
     }
-  },
-  computed: {
-
-  },
-  async created() {
-    this.headerH1 = "Weather";
-    await this.getWeathers();
-  },
-  mounted() {
-  },
-  beforeUnmount() {
-
-  },
-  watch: {
-
-  },
-  methods: {
-    async getWeathers() {
-      const url = "http://localhost:8080/module_d_api.php/weather.json";
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Response status: ${response.status}`);
-        }
-        const result = await response.json();
-        this.weathers = result;
-      } catch (error) {
-        console.error(error.message);
-      }
-    },
-  },
+    weathers.value = await response.json();
+  } catch (error) {
+    console.error(error.message);
+  }
 }
+
+getWeathers()
 </script>
 
 <template>
