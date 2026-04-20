@@ -1,0 +1,299 @@
+Check,URL,Item,Item_JP
+,(General),Place files in /XX_module_a/ with task ID as folder name (e.g. /XX_module_a/A1/),ファイルを /XX_module_a/ にtask IDのフォルダ名で配置する（例: /XX_module_a/A1/）
+,(General),Create an index page linking to each mini speed test project,各mini speed test projectへのリンクを持つindexページを作成する
+,(General),Index page should contain thumbnail and title of each mini speed test project,indexページには各mini speed test projectのサムネイルとタイトルを含む
+,(General),Write at least one git commit for each mini speed test project,各mini speed test projectにつき少なくとも1つのgit commitを書く
+,(General),Git commit messages should be readable and easy to understand,git commitメッセージは読みやすく理解しやすいものにする
+,(General),Each mini Test Project folder should be separated and self-contained,各mini Test Projectフォルダは分離され自己完結していること
+,(General),Do not include unrelated folders or mini Test Projects,関連のないフォルダやmini Test Projectsを含めないこと
+,(General),This project will be assessed by using Google Chrome web browser,このプロジェクトはGoogle Chromeウェブブラウザを使用して評価される
+,(Level System),"Level 1: 0.5 points, expected < 15 minutes","Level 1: 0.5ポイント、想定15分未満"
+,(Level System),"Level 2: 1.0 points, expected < 30 minutes","Level 2: 1.0ポイント、想定30分未満"
+,(Level System),"Level 3: 1.5 points, expected ~30 minutes","Level 3: 1.5ポイント、想定約30分"
+,A1: Magnifying Dock (L1),A glow effect is added that moves around the boxes with the cursor,カーソルと共にボックス周囲を移動するglow effectを追加
+,A1: Magnifying Dock (L1),The magnifying effect is at its maximum at the center of the box,拡大エフェクトはボックスの中心で最大
+,A1: Magnifying Dock (L1),"Objects closer to the cursor are magnified, those further away appear smaller",カーソルに近いオブジェクトは拡大され、遠いものは小さく表示される
+,A1: Magnifying Dock (L1),"Magnification gradually reduces from one box to another, with more than one box magnified at a time",拡大は1つのボックスから別のボックスへ徐々に減少し、複数のボックスが同時に拡大される
+,A1: Magnifying Dock (L1),Mouse movement leads to a smooth transition in the magnifying effect,マウス移動が拡大エフェクトのスムーズなトランジションにつながる
+,A2: Neobrutalism Button (L1),Button implemented using only HTML and CSS,HTMLとCSSのみでボタンを実装
+,A2: Neobrutalism Button (L1),Hover effect implemented,ホバーエフェクトを実装
+,A2: Neobrutalism Button (L1),Active button effect implemented,アクティブボタンエフェクトを実装
+,A2: Neobrutalism Button (L1),"When releasing the click, button returns to the main position",クリックを離すとボタンが元の位置に戻る
+,A3: Animated Link (L1),Implemented link hover animation,リンクのホバーアニメーションを実装
+,A3: Animated Link (L1),Implemented active link animation,リンクのアクティブアニメーションを実装
+,A3: Animated Link (L1),Implemented the animations without using JavaScript,JavaScriptを使用せずにアニメーションを実装
+,A4: Jumping Ball (L2),Recreated the balls alike the provided design,提供されたデザインと同様のボールを再現
+,A4: Jumping Ball (L2),Implemented the jump animation,ジャンプアニメーションを実装
+,A4: Jumping Ball (L2),The animation has motion and shadow effects that follow the provided video,アニメーションに提供されたビデオに従ったモーションとシャドウエフェクトがある
+,A4: Jumping Ball (L2),The animation is happening in a coordinated way,アニメーションが協調的に動作している
+,A5: Olympic Rings (L2),The Olympics logo circles were created,オリンピックロゴの円が作成された
+,A5: Olympic Rings (L2),Circle overlay is similar to the provided media files,円のオーバーレイが提供されたメディアファイルと類似
+,A6: Loading Animation (L1),The loading animation has been created,ローディングアニメーションが作成された
+,A6: Loading Animation (L1),The loading animation follows the provided media files,ローディングアニメーションが提供されたメディアファイルに従っている
+,A6: Loading Animation (L1),The loading animation is displayed only while the page is loading,ローディングアニメーションはページのローディング中のみ表示される
+,A7: Custom Cursor (L2),The hover element has been created,ホバー要素が作成された
+,A7: Custom Cursor (L2),The hover element follows the shape shown in provided media files,ホバー要素が提供されたメディアファイルで示された形状に従っている
+,A7: Custom Cursor (L2),The hover element replicates the effect provided in media files,ホバー要素がメディアファイルで提供されたエフェクトを再現
+,A8: Glassmorphism Card (L2),"The inputs have been implemented (Transparency (range), Blur (range), Color (color), Outline (range)) (decrease 0.15 for each input not working)","インプットが実装されている（Transparency (range), Blur (range), Color (color), Outline (range)）（動作しないインプットごとに0.15減点）"
+,A8: Glassmorphism Card (L2),The card changes according to the inputs value change,カードがインプット値の変更に応じて変化する
+,A8: Glassmorphism Card (L2),The provided CSS code follows the same implemented in the page,提供されるCSSコードがページに実装されたものと同じ
+,A9: Holy Grail Layout (L1),"Header, fixed-width left nav, content in middle, fixed-width right sidebar, footer layout implemented","Header、固定幅左ナビ、中央コンテンツ、固定幅右サイドバー、footerレイアウトを実装"
+,A9: Holy Grail Layout (L1),Desktop and Mobile layouts match reference images,デスクトップとモバイルレイアウトがリファレンス画像と一致
+,A10: Background Pattern (L1),Stripes background pattern with 240px width and 240px height created,240px幅と240px高さのストライプ背景パターンを作成
+,A11: Colorful Button (L3),"Four color bars appear on hover, moving in from top to bottom left to right. CSS only, no HTML modification",ホバー時に4つのカラーバーが上から下へ左から右へ移動して表示。CSSのみ、HTML変更なし
+,A11: Colorful Button (L3),"Four arcs appear from corresponding corners, growing in size on hover",ホバー時に対応するコーナーから4つのアークが出現し、サイズが拡大
+,A11: Colorful Button (L3),"On mouse out, arcs revert back to original position",マウスアウト時にアークが元の位置に戻る
+,A11: Colorful Button (L3),"On mouse out, four color bars move out from bottom to top left to right",マウスアウト時に4つのカラーバーが下から上へ左から右へ移動して消える
+,A11: Colorful Button (L3),The four color bars do not cover the text on the button,4つのカラーバーがボタン上のテキストを覆わない
+,A12: Typing (L1),Typing animation and deletion animation runs correctly,タイピングアニメーションと削除アニメーションが正しく動作
+,A12: Typing (L1),Animation loops continuously,アニメーションが連続でループする
+,A12: Typing (L1),Uses the provided texts array without modification,提供されたtexts配列を変更せずに使用
+,A13: Drip (L2),Looping drip effect implemented using only HTML and CSS,HTMLとCSSのみでループするドリップエフェクトを実装
+,A13: Drip (L2),Effect matches the reference video,エフェクトがリファレンスビデオと一致
+,A14: Ripple Card (L2),Ripple effect appears from the direction the mouse enters the card,マウスがカードに入る方向からリップルエフェクトが表示される
+,A14: Ripple Card (L2),Only HTML and CSS were used. Effect matches the video,HTMLとCSSのみを使用。エフェクトがビデオと一致
+,A15: Olympics Games (L1),All five circles are present,5つの円すべてが存在する
+,A15: Olympics Games (L1),"Correct colours used (Blue: #0081C8, Black: #000, Red: #EE334E, Yellow: #FCB131, Green: #00A651)","正しい色を使用（Blue: #0081C8, Black: #000, Red: #EE334E, Yellow: #FCB131, Green: #00A651）"
+,A15: Olympics Games (L1),The proportion is maintained,プロポーションが維持されている
+,A15: Olympics Games (L1),"Z-index maintained (yellow over blue, black over yellow and green, green over red)","z-indexが維持されている（yellowがblueの上、blackがyellowとgreenの上、greenがredの上）"
+,A16: 3D Flip Card (L3),Front of card is similar to provided sample,カードの表面が提供されたサンプルと類似
+,A16: 3D Flip Card (L3),Back of card is similar to provided sample,カードの裏面が提供されたサンプルと類似
+,A16: 3D Flip Card (L3),Front has 3D elements of border and text,表面にボーダーとテキストの3D要素がある
+,A16: 3D Flip Card (L3),Back has 3D elements of title and button,裏面にタイトルとボタンの3D要素がある
+,A17: Cube Rotation (L2),Cube rotates using CSS only (no JS),CSSのみでキューブが回転（JSなし）
+,A17: Cube Rotation (L2),All 6 faces are shown at least once,全6面が少なくとも1回表示される
+,A17: Cube Rotation (L2),Cube rotates in requested sequence: 1-clock-wise / 1 Down,キューブが要求された順序で回転: 1-時計回り / 1 下
+,A17: Cube Rotation (L2),"Faces match requested colours (Red front/back, Yellow left/right, Green top/bottom)","面が要求された色と一致（Red 前/後、Yellow 左/右、Green 上/下）"
+,A18: Carousel (L2),Carousel area implemented using provided images,提供された画像を使用してカルーセルエリアを実装
+,A18: Carousel (L2),Clickable buttons at bottom center that control slides with style changes,スライドを操作するクリック可能なボタンが下部中央にあり、スタイルが変化する
+,A18: Carousel (L2),Clicking button moves to corresponding slide order,ボタンクリックで対応するスライド順に移動
+,A18: Carousel (L2),Arrow keys move slides left/right (no left on first image and no right on last),矢印キーでスライドを左右に移動（最初の画像では左不可、最後の画像では右不可）
+,A19: Flag Animation (L3),The French flag provided was used,提供されたフランス国旗が使用された
+,A19: Flag Animation (L3),All parts of the flag are animated seamlessly and naturally,フラグの全パーツがシームレスかつ自然にアニメーション
+,A19: Flag Animation (L3),The animation effect continues indefinitely,アニメーションエフェクトが無限に継続
+,A20: CSS Line Chart (L2),Chart area with lines and points implemented,ラインとポイントを持つチャートエリアを実装
+,A20: CSS Line Chart (L2),"Initially, lines and dots are located at the bottom","初期状態では、ラインとドットが下部に位置する"
+,A20: CSS Line Chart (L2),"On hover, lines and strokes rise from the bottom as shown in video",ホバー時にラインとストロークがビデオのように下から上昇
+,A20: CSS Line Chart (L2),"On hover, all items rise to specified heights (65%, 25%, 85%, 40%)","ホバー時に全アイテムが指定の高さに上昇（65%, 25%, 85%, 40%）"
+,A20: CSS Line Chart (L2),Point is located exactly where the line bends,ポイントがラインの曲がる位置に正確に配置
+,A21: 3D Button (L1),Animation matches the sample video,アニメーションがサンプルビデオと一致
+,A21: 3D Button (L1),Text changes on hover,ホバー時にテキストが変化
+,A22: CSS Bar Chart (L1),Bar graph area is displayed and initial screen is blank,バーグラフエリアが表示され初期画面は空白
+,A22: CSS Bar Chart (L1),"On hover, bars move up in order from the bottom",ホバー時にバーが下から順に上昇
+,A22: CSS Bar Chart (L1),"On hover, bars go up sequentially starting from the left",ホバー時にバーが左から順に上昇
+,A23: Scroll Animation (L2),Section 1 functions implemented as shown in video,セクション1の機能がビデオの通りに実装
+,A23: Scroll Animation (L2),Section 2 functions implemented as shown in video,セクション2の機能がビデオの通りに実装
+,A23: Scroll Animation (L2),Section 3 functions implemented as shown in video,セクション3の機能がビデオの通りに実装
+,A23: Scroll Animation (L2),Implemented by only modifying animation.css,animation.cssの変更のみで実装
+,A24: Loading Animation (L2),"Two X-axis and Y-axis bars present, as shown in image",画像の通りX軸とY軸の2つのバーが存在
+,A24: Loading Animation (L2),Z-index and animation effect similar to provided video,z-indexとアニメーションエフェクトが提供されたビデオと類似
+,A24: Loading Animation (L2),The animation continues indefinitely,アニメーションが無限に継続
+,A25: CSS Pie Chart (L1),Pie graph area displayed and initial screen is blank (except immediately after first loading),パイグラフエリアが表示され初期画面は空白（初回ロード直後を除く）
+,A25: CSS Pie Chart (L1),"On hover, chart appears clockwise; on mouse leave, disappears counterclockwise","ホバー時にチャートが時計回りに表示、マウス離脱時に反時計回りに消える"
+,A25: CSS Pie Chart (L1),Appearance of chart matches provided video,チャートの外観が提供されたビデオと一致
+,A25: CSS Pie Chart (L1),"Chart item values are 45%, 25%, 30%","チャートアイテムの値が45%, 25%, 30%"
+,A26: Dashboard Layout (L2),No scrolling except for list scroll inside the section,セクション内のリストスクロール以外にスクロールがない
+,A26: Dashboard Layout (L2),List content does not exceed the section and scrolls,リストコンテンツがセクションを超えずスクロールする
+,A26: Dashboard Layout (L2),Implemented by only modifying your-work.css,your-work.cssの変更のみで実装
+,A27: Accessibility (L2),Fixed the minimum and maximum sizes of the viewport,viewportの最小・最大サイズを修正
+,A27: Accessibility (L2),Used the button tag,buttonタグを使用
+,A27: Accessibility (L2),Fixed accessibility issues with image tags,imageタグのアクセシビリティ問題を修正
+,A27: Accessibility (L2),Modified visibility and hover style of A tag,Aタグのvisibilityとホバースタイルを修正
+,A27: Accessibility (L2),Contrast accessibility issues fixed,コントラストのアクセシビリティ問題を修正
+,A27: Accessibility (L2),Files placed in the resolve folder,ファイルをresolveフォルダに配置
+,B1: Image Cropper (L3),Images uploaded through drag and drop; canvas size unchanged by image size,ドラッグ&ドロップで画像をアップロード。キャンバスサイズは画像サイズで変更されない
+,B1: Image Cropper (L3),Crop canvas shows image with darken filter as background and crop window without filters,クロップキャンバスがdarkenフィルタの背景画像とフィルタなしのクロップウィンドウを表示
+,B1: Image Cropper (L3),Crop window movable with mouse; size adjustable through range inputs; cannot exceed image,クロップウィンドウがマウスで移動可能。rangeインプットでサイズ調整可能。画像を超えない
+,B1: Image Cropper (L3),Download button functional; downloaded image follows original size,ダウンロードボタンが機能。ダウンロード画像が元のサイズに従う
+,B2: Color Picker (L3),Images uploaded through drag and drop; canvas size unchanged by image size,ドラッグ&ドロップで画像をアップロード。キャンバスサイズは画像サイズで変更されない
+,B2: Color Picker (L3),Canvas has cursor showing current color (pixel) on hover,キャンバスにホバー時の現在の色（ピクセル）を表示するカーソルがある
+,B2: Color Picker (L3),"On click, current color displayed in bottom output area with hex code","クリック時に現在の色が下部出力エリアにhexコードと共に表示"
+,B2: Color Picker (L3),Copy color button copies color to clipboard,色コピーボタンがクリップボードに色をコピー
+,B3: Fixed-Column Table (L2),"Table 100% width, 15 columns with fixed 100px width","テーブル100%幅、15列の固定100px幅"
+,B3: Fixed-Column Table (L2),"On overflow, first, second and last column remain fixed and do not move on scroll","オーバーフロー時、最初、2番目、最後の列が固定されスクロールで動かない"
+,B4: 3D Gallery (L2),Each image has a mirrored shadow image at its bottom. HTML not modified; only CSS,各画像の下にミラーシャドウ画像がある。HTMLは変更なし。CSSのみ
+,B4: 3D Gallery (L2),Hovered image enlarges; other images tilt towards hovered image,ホバーされた画像が拡大。他の画像がホバーされた画像に向かって傾く
+,B5: Music Waves (L2),Only one music can be played at the same time,同時に1つの音楽のみ再生可能
+,B5: Music Waves (L2),Each music file can be played by its corresponding button,各音楽ファイルが対応するボタンで再生可能
+,B5: Music Waves (L2),"Fluctuation composed of many lines, surrounding a black circle",多くのラインで構成された変動が黒い円を囲んでいる
+,B5: Music Waves (L2),"Each line moves up and down from the black circle position, based on music melody",各ラインが音楽のメロディに基づいて黒い円の位置から上下に移動
+,B6: Direction Modal (L2),"Modal entry: flies in from button position with fade-in and scale-in. Only edit competitor.css and main.js","モーダル表示: ボタン位置からフェードインとスケールインで飛び込む。competitor.cssとmain.jsのみ編集"
+,B6: Direction Modal (L2),"Modal leave: flies back to button with fade-out and scale-out on background click or Close button","モーダル消去: 背景クリックまたはCloseボタンでフェードアウトとスケールアウトでボタンに戻る"
+,B7: Pixel Circle (L2),Canvas composed of a 61x61 grid of squares,キャンバスが61x61のグリッドで構成
+,B7: Pixel Circle (L2),Circle shape correctly generated using radius input field,半径入力フィールドで円の形状が正しく生成される
+,B7: Pixel Circle (L2),"When radius is 30, circle fills the entire canvas","半径が30の場合、円がキャンバス全体を埋める"
+,B8: Fusion (L1),All color combination conditions and alert results are displayed correctly,すべての色の組み合わせ条件とアラート結果が正しく表示される
+,B9: Image Compare (L2),"Splitter left is before.jpg, right is after.jpg. No HTML elements added or removed","スプリッターの左がbefore.jpg、右がafter.jpg。HTML要素の追加・削除なし"
+,B9: Image Compare (L2),Splitter movable by dragging or clicking within container,スプリッターがコンテナ内でドラッグまたはクリックで移動可能
+,B9: Image Compare (L2),Image effect matches compare.mp4 video,画像エフェクトがcompare.mp4ビデオと一致
+,B10: Countdown Clock (L3),Countdown seconds number display working in center of circle,カウントダウン秒数が円の中央に表示
+,B10: Countdown Clock (L3),Countdown circular progress bar working,カウントダウン円形プログレスバーが動作
+,B10: Countdown Clock (L3),Countdown progress bar smooth (not jumping),カウントダウンプログレスバーがスムーズ（ジャンプしない）
+,B10: Countdown Clock (L3),Color changes green > orange at 10sec > red at 5sec,色がgreen > 10秒でorange > 5秒でredに変化
+,B10: Countdown Clock (L3),Countdown duration changeable in one place is working,カウントダウン時間が1箇所で変更可能
+,B10: Countdown Clock (L3),"Using plain HTML, CSS, JS","プレーンHTML, CSS, JSを使用"
+,B11: Dynamic Content (L2),"Tabular display of dynamic values for title/topic pro, con, abs from JSON","JSONからのtitle/topic pro, con, absの動的値をテーブル表示"
+,B11: Dynamic Content (L2),Percentages and total votes calculated from JSON data and shown,JSONデータからパーセンテージと総投票数を計算して表示
+,B11: Dynamic Content (L2),Majority highlighted in bold and green,多数派が太字とグリーンでハイライト
+,B11: Dynamic Content (L2),Working loaded from local file and via webserver,ローカルファイルとウェブサーバー経由の両方で動作
+,B12: Blur Slider (L2),The slider can be dragged,スライダーがドラッグ可能
+,B12: Blur Slider (L2),Blur effect changes progressively as slider is moved,スライダー移動に応じてブラーエフェクトが段階的に変化
+,B12: Blur Slider (L2),Slider interaction is smooth and responsive,スライダーの操作がスムーズでレスポンシブ
+,B12: Blur Slider (L2),JavaScript only; provided CSS was not altered or additional CSS created,JavaScriptのみ。提供されたCSSは変更されていないし追加CSSも作成されていない
+,B13: Random Circles (L2),All five circles displayed on page load,ページロード時に5つの円すべてが表示
+,B13: Random Circles (L2),Circles have different dimensions,円が異なるサイズを持つ
+,B13: Random Circles (L2),Circles are not overlapping after page reload,ページリロード後に円が重なっていない
+,B13: Random Circles (L2),Circles are responsive — fit in new window size on resize,円がレスポンシブ — リサイズ時に新しいウィンドウサイズに収まる
+,B14: Gradient Selector (L3),"12 randomized colour buttons on each side; clicking inserts colour into input",各サイドに12個のランダム色ボタン。クリックで色がインプットに挿入される
+,B14: Gradient Selector (L3),12 colour buttons organized in 4x3 grid above input fields,12個の色ボタンがインプットフィールドの上に4x3グリッドで配置
+,B14: Gradient Selector (L3),Input fields correctly update gradient colour when valid HEX entered,有効なHEX入力時にインプットフィールドがグラデーション色を正しく更新
+,B14: Gradient Selector (L3),Square gradient updates dynamically without page refresh,四角のグラデーションがページリフレッシュなしで動的に更新
+,B15: String Reverser JS (L1),Form correctly submits the input string,フォームが入力文字列を正しく送信
+,B15: String Reverser JS (L1),Input word converted to upper case,入力された単語が大文字に変換される
+,B15: String Reverser JS (L1),Inputted word is reversed,入力された単語が反転される
+,B15: String Reverser JS (L1),Processed string updated dynamically without page refresh,処理された文字列がページリフレッシュなしで動的に更新
+,B16: Fortune Wheel (L3),There are 12 slices on the wheel,ホイールに12個のスライスがある
+,B16: Fortune Wheel (L3),Slices are behind the black pin,スライスが黒いピンの後ろにある
+,B16: Fortune Wheel (L3),Wheel spins when spin button is clicked,スピンボタンクリック時にホイールが回転
+,B16: Fortune Wheel (L3),Spin is about 5-6 seconds,スピンが約5-6秒
+,B17: Tabs (L2),"All four tabs present with correct labels and colours (about, history, objectives, impact)","4つのタブすべてが正しいラベルと色で存在（about, history, objectives, impact）"
+,B17: Tabs (L2),All 4 tabs clickable and work as intended,4つのタブすべてがクリック可能で意図通りに動作
+,B17: Tabs (L2),All text correctly displayed in respective tabs (title and content),すべてのテキストが各タブに正しく表示（タイトルとコンテンツ）
+,B17: Tabs (L2),Learn More button has hover effect,Learn Moreボタンにホバーエフェクトがある
+,B18: Rotating Gallery (L2),Images rotate in container when Next/Previous button clicked,Next/Previousボタンクリック時にコンテナ内の画像が回転
+,B18: Rotating Gallery (L2),CSS file not modified,CSSファイルが変更されていない
+,B19: Show/Hide Password (L2),Password show/hide functionality implemented,パスワードの表示/非表示機能を実装
+,B20: Accordion (L3),Clicking section header displays corresponding content,セクションヘッダークリックで対応するコンテンツが表示
+,B20: Accordion (L3),Uses provided CSS file,提供されたCSSファイルを使用
+,B21: Layer Paint Board (L3),"Paint board showing all layers, layer list, and color picker","全レイヤーを表示するペイントボード、レイヤーリスト、カラーピッカー"
+,B21: Layer Paint Board (L3),"Can change order of layers, add, delete, and select layers","レイヤーの順序変更、追加、削除、選択が可能"
+,B21: Layer Paint Board (L3),Drawing on selected layer with chosen color works,選択されたレイヤーに選択した色で描画が動作
+,B21: Layer Paint Board (L3),Drawing on each layer is displayed,各レイヤーの描画が表示される
+,B21: Layer Paint Board (L3),Any changes are immediately reflected in the layer,変更がすぐにレイヤーに反映される
+,B22: Excel Table (L1),View and enter data for 600 cells (20 columns x 30 rows) on one screen,1画面で600セル（20列x30行）のデータを表示・入力
+,B22: Excel Table (L1),Scroll to check values up to column XFD and row 1,048,576,列XFDと行1048576までスクロールして値を確認
+,B22: Excel Table (L1),Data in entered cells remains visible after scrolling off screen,入力されたセルのデータが画面外にスクロールしても表示される
+,B22: Excel Table (L1),"All operations executed immediately without delay (data entry, scrolling)","すべての操作が遅延なく即座に実行（データ入力、スクロール）"
+,B23: 3D Wave Words (L1),40x40 = 1600 random words of uppercase/lowercase letters and numbers,40x40 = 1600個の大文字/小文字英字と数字のランダムワード
+,B23: 3D Wave Words (L1),"Each word moves up and down in 3D wave pattern along Z-axis, repeating infinitely",各ワードがZ軸に沿って3Dウェーブパターンで上下に移動し、無限に繰り返す
+,B23: 3D Wave Words (L1),Completed by writing code only in provided script.js,提供されたscript.jsにコードを書くのみで完成
+,B24: Book List (L2),Book can be added to the list,本をリストに追加できる
+,B24: Book List (L2),CSS file not modified,CSSファイルが変更されていない
+,B25: Page Transition (L3),Page transition animation implemented similar to provided video,提供されたビデオと類似のページ遷移アニメーションを実装
+,B25: Page Transition (L3),URL changes with page transition; page persists on refresh,ページ遷移でURLが変更。リフレッシュ時にページが維持される
+,B25: Page Transition (L3),Uses provided file; HTML not modified,提供されたファイルを使用。HTMLは変更されていない
+,B26: Digital Display (L2),Form to input text and slide area exist,テキスト入力フォームとスライドエリアが存在
+,B26: Digital Display (L2),Input text displayed in dot form in slide area (including emojis),入力テキストがスライドエリアにドット形式で表示（絵文字含む）
+,B26: Digital Display (L2),Dots are a single color and have a perfect dot shape,ドットが単一色で完全なドット形状
+,B26: Digital Display (L2),Dot-form text slides right to left in infinite loop,ドット形式テキストが右から左へ無限ループでスライド
+,B27: Sliding Puzzle (L1),4x4 puzzle displayed with bottom right piece missing,4x4パズルが表示され右下のピースが欠落
+,B27: Sliding Puzzle (L1),Clicking adjacent piece moves it to empty spot,隣接するピースをクリックすると空きスポットに移動
+,B27: Sliding Puzzle (L1),Movement occurs with sliding animation,移動がスライドアニメーションで発生
+,B27: Sliding Puzzle (L1),"No movement if no empty spot adjacent to clicked piece",クリックされたピースに隣接する空きスポットがない場合は移動しない
+,B28: Color Wheel (L2),"Circular color wheel, brightness adjuster, and hex result value displayed","円形カラーホイール、明度調整器、hex結果値が表示"
+,B28: Color Wheel (L2),Clicking color wheel shows selected color with marker,カラーホイールクリックで選択された色がマーカーと共に表示
+,B28: Color Wheel (L2),Brightness adjuster reflected in color wheel and hex value,明度調整がカラーホイールとhex値に反映
+,B28: Color Wheel (L2),Hex result value changes instantly to correct value on color/brightness change,色/明度変更時にhex結果値が即座に正しい値に変更
+,B29: Firefly (L2),125 cubes arranged in cubic form within 3D grid,125個のキューブが3Dグリッド内に立方体形式で配置
+,B29: Firefly (L2),Cubes light up sequentially from innermost to outermost,キューブが最内部から最外部へ順に点灯
+,B29: Firefly (L2),Cube set rotatable by mouse dragging,マウスドラッグでキューブセットを回転可能
+,B29: Firefly (L2),Zoom in/out towards center using scroll wheel,スクロールホイールで中心に向かってズームイン/アウト
+,B30: Upload Progressbar (L1),Clicking upload button sends file to upload.php,アップロードボタンクリックでファイルをupload.phpに送信
+,B30: Upload Progressbar (L1),Progress bar filled when upload complete,アップロード完了時にプログレスバーが満杯
+,B30: Upload Progressbar (L1),"Upload progress displayed as progress bar, reflecting actual network conditions",アップロード進捗がプログレスバーとして表示、実際のネットワーク状況を反映
+,B31: Fractal Line (L1),"Canvas area, number input form, and button exist","キャンバスエリア、数値入力フォーム、ボタンが存在"
+,B31: Fractal Line (L1),Fractal image drawn after entering iterations and clicking button,イテレーション数を入力しボタンクリック後にフラクタル画像が描画
+,B31: Fractal Line (L1),Drawn image has same fractal structure as shown in video,描画された画像がビデオと同じフラクタル構造を持つ
+,B32: Pointer Tail (L2),Default mouse cursor hidden and replaced with red cursor,デフォルトマウスカーソルが非表示になり赤いカーソルに置換
+,B32: Pointer Tail (L2),Cursor circle becomes smaller when mouse is moved,マウス移動時にカーソルの円が小さくなる
+,B32: Pointer Tail (L2),Tail follows previous path of cursor when mouse is moved,マウス移動時にテールがカーソルの前のパスを追従
+,B32: Pointer Tail (L2),"Faster mouse movement, longer tail becomes",マウス移動が速いほどテールが長くなる
+,B33: Shared Animation Video (L3),8 videos played in 16/9 proportion on list page,リストページで8本のビデオが16/9比率で再生
+,B33: Shared Animation Video (L3),Clicking video on list page: surrounding area blurs and video goes fullscreen with transition,リストページでビデオクリック時: 周囲エリアがブラーしビデオがトランジション付きでフルスクリーンに
+,B33: Shared Animation Video (L3),Video does not reset or blink when switching to fullscreen,フルスクリーン切替時にビデオがリセットやブリンクしない
+,B33: Shared Animation Video (L3),"Refreshing in fullscreen mode, video plays in fullscreen","フルスクリーンモードでリフレッシュ時、ビデオがフルスクリーンで再生"
+,B33: Shared Animation Video (L3),"Clicking fullscreen video returns to list page, all videos play","フルスクリーンビデオクリックでリストページに戻り、全ビデオが再生"
+,B34: Async Calculation (L1),Used provided HTML and CSS files,提供されたHTMLとCSSファイルを使用
+,B34: Async Calculation (L1),Clicking Calculation produces accurate result,Calculationクリックで正確な結果を生成
+,B34: Async Calculation (L1),Progress increases in proportion to calculation time during calculation,計算中にprogressが計算時間に比例して増加
+,B34: Async Calculation (L1),"Change background button works during calculation (UI not blocked)",計算中にchange backgroundボタンが動作（UIがブロックされない）
+,B35: Fractal Triangle (L1),"Canvas area, number input form, and button exist","キャンバスエリア、数値入力フォーム、ボタンが存在"
+,B35: Fractal Triangle (L1),Fractal image drawn after entering iterations and clicking button,イテレーション数を入力しボタンクリック後にフラクタル画像が描画
+,B35: Fractal Triangle (L1),Drawn image has equilateral triangle fractal structure as shown in video,描画された画像がビデオと同じ正三角形フラクタル構造を持つ
+,B36: Build Option (L2),Source files in correct location before building,ビルド前にソースファイルが正しい場所にある
+,B36: Build Option (L2),Build output in correct location and checkable through browser (page1.html),ビルド出力が正しい場所にありブラウザで確認可能（page1.html）
+,B36: Build Option (L2),"JS and CSS imported correctly, navigation between page1.html and page2.html works","JSとCSSが正しくインポートされ、page1.htmlとpage2.html間のナビゲーションが動作"
+,B37: Pixel Art (L3),Pixel art board size 20x20 with visible and distinct cells,20x20サイズのピクセルアートボードで各セルが可視で区別可能
+,B37: Pixel Art (L3),Each pixel can be changed to any color or erased,各ピクセルを任意の色に変更または消去可能
+,B37: Pixel Art (L3),Copy button copies box-shadow CSS code to clipboard,Copyボタンがbox-shadow CSSコードをクリップボードにコピー
+,B37: Pixel Art (L3),Copied code has same format as specified (spacing doesn't matter),コピーされたコードが指定された形式と同じ（スペースは問わない）
+,B38: Masonry Layout (L2),Gallery layout with 4 columns displayed,4列のギャラリーレイアウトが表示
+,B38: Masonry Layout (L2),100 images arranged in order (placed in smallest height column first; same height fills from left),100画像が順に配置（最小高さの列に優先配置。同じ高さの場合は左から）
+,B38: Masonry Layout (L2),"When last image visible, next ten images loaded",最後の画像が見えたら次の10画像がロードされる
+,B38: Masonry Layout (L2),"If last image still visible after loading, next ten loaded immediately",ロード後も最後の画像がまだ見える場合、次の10画像が即座にロード
+,B39: Multiple Counters (L1),Can add a counter,カウンターを追加できる
+,B39: Multiple Counters (L1),Can add multiple counters,複数のカウンターを追加できる
+,B39: Multiple Counters (L1),Each counter can independently increase and decrease,各カウンターが独立して増減可能
+,B39: Multiple Counters (L1),UI adjusted with user experience in mind,UIがユーザーエクスペリエンスを考慮して調整されている
+,B40: Image Editor (L2),Brightness works correctly,明るさが正しく動作
+,B40: Image Editor (L2),Contrast works correctly,コントラストが正しく動作
+,B40: Image Editor (L2),Hue works correctly,色相が正しく動作
+,B40: Image Editor (L2),Can be adjusted using numeric input,数値入力で調整可能
+,B41: Change Date Format (L1),Select changes days based on the month,月に基づいて日数のセレクトが変化
+,B41: Change Date Format (L1),Results update automatically when selection changes,選択変更時に結果が自動更新
+,B41: Change Date Format (L1),"Converts and displays results ('-' separated, leading zeros for single digit)","結果を変換して表示（'-'区切り、1桁の場合は先頭ゼロ付き）"
+,B41: Change Date Format (L1),UI adjusted with user experience in mind,UIがユーザーエクスペリエンスを考慮して調整されている
+,C1: Folder Zip (L1),Users can select a folder and compress to zip with same folder name,ユーザーがフォルダを選択して同じフォルダ名でzipに圧縮可能
+,C1: Folder Zip (L1),Zip file automatically downloads,zipファイルが自動ダウンロード
+,C1: Folder Zip (L1),Empty subfolders not included in compressed archive,空のサブフォルダは圧縮アーカイブに含まれない
+,C2: WSC News (L2),"Static website generated (not SPA) with pagination, 5 news per page","静的ウェブサイトを生成（SPAではない）、ページネーション付き、1ページ5件"
+,C2: WSC News (L2),"News list shows title, excerpt, and date only","ニュースリストはtitle, excerpt, dateのみ表示"
+,C2: WSC News (L2),"Clicking news item redirects to details page showing title, description, date","ニュースアイテムクリックで詳細ページにリダイレクト、title, description, dateを表示"
+,C2: WSC News (L2),"Current page link highlighted; Previous disabled on first page, Next disabled on last page","現在のページリンクがハイライト。最初のページでPrevious無効、最後のページでNext無効"
+,C3: CSV Converter (L2),Output in same directory with same basename (extension differs),同じディレクトリに同じベースネームで出力（拡張子が異なる）
+,C3: CSV Converter (L2),Dynamic number of columns respected,動的な列数に対応
+,C3: CSV Converter (L2),Input with same or similar data produces expected output,同じまたは類似のデータ入力で期待される出力を生成
+,C4: String Reverser PHP (L1),Form correctly submits input string using POST method,フォームがPOSTメソッドで入力文字列を正しく送信
+,C4: String Reverser PHP (L1),"Input validation: only non-empty strings processed",入力バリデーション: 空でない文字列のみ処理
+,C4: String Reverser PHP (L1),Input word converted to upper case,入力された単語が大文字に変換される
+,C4: String Reverser PHP (L1),Inputted word is reversed,入力された単語が反転される
+,C5: Recurring Calendar (L3),"Form to change date, calendar for selected month, form to add events","日付変更フォーム、選択月のカレンダー、イベント追加フォーム"
+,C5: Recurring Calendar (L3),Single schedule can be added,単一スケジュールを追加可能
+,C5: Recurring Calendar (L3),Recurring schedules can be added,繰り返しスケジュールを追加可能
+,C5: Recurring Calendar (L3),Single schedules displayed correctly,単一スケジュールが正しく表示
+,C5: Recurring Calendar (L3),"Recurring schedules displayed correctly (last day rule, only after task date)","繰り返しスケジュールが正しく表示（最終日ルール、タスク日以降のみ）"
+,C5: Recurring Calendar (L3),Calendar date can be changed,カレンダーの日付を変更可能
+,C6: SQL Data Import (L1),Workable solution provided as SQL file,動作するソリューションがSQLファイルとして提供
+,C6: SQL Data Import (L1),sql_import_dump.sql provided with correct naming,正しいネーミングでsql_import_dump.sqlが提供
+,C6: SQL Data Import (L1),Database name is correct as data_import,データベース名がdata_importとして正しい
+,C6: SQL Data Import (L1),All CSV data imported (10 columns / 15979 last game ID),全CSVデータがインポート済み（10列 / 15979の最終ゲームID）
+,C7: Excel Download (L3),File posts.xlsx is downloaded,ファイルposts.xlsxがダウンロードされる
+,C7: Excel Download (L3),Downloaded file can be opened with Excel program,ダウンロードされたファイルがExcelプログラムで開ける
+,C7: Excel Download (L3),Data reflects data from the database,データがデータベースのデータを反映
+,C8: User Registration (L3),Register button adds entry to database and returns in frontend table,registerボタンがデータベースにエントリを追加しフロントエンドテーブルに返す
+,C8: User Registration (L3),New entry appears in registered users table without page refresh,新しいエントリがページリフレッシュなしでregistered usersテーブルに表示
+,C8: User Registration (L3),"Existing email cannot be inserted, error message appears","既存のemailは挿入できず、エラーメッセージが表示"
+,C8: User Registration (L3),Database reset correctly (IDs start from 1 after reset),データベースが正しくリセット（リセット後にIDが1から開始）
+,C9: API CORS (L2),Requests sent to back-end when opening development server,開発サーバー接続時にリクエストがバックエンドに送信
+,C9: API CORS (L2),GET method request works correctly,GETメソッドリクエストが正しく動作
+,C9: API CORS (L2),POST method request works correctly,POSTメソッドリクエストが正しく動作
+,C9: API CORS (L2),PUT method request works correctly,PUTメソッドリクエストが正しく動作
+,C9: API CORS (L2),DELETE method request works correctly,DELETEメソッドリクエストが正しく動作
+,C10: Realtime Chat (L2),Developed separately into back-end and front-end,バックエンドとフロントエンドに分離して開発
+,C10: Realtime Chat (L2),Front-end used the given file,フロントエンドが提供されたファイルを使用
+,C10: Realtime Chat (L2),Back-end and front-end communicate through socket.io,バックエンドとフロントエンドがsocket.ioで通信
+,C10: Realtime Chat (L2),Messages sent to all connected users and viewable in real time,メッセージが全接続ユーザーに送信されリアルタイムで閲覧可能
+,C10: Realtime Chat (L2),Input window blank after sending message,メッセージ送信後に入力ウィンドウが空白
+,C11: Image Mosaic (L1),Mosaic created according to cell_size query parameter,cell_sizeクエリパラメータに応じてモザイクが作成
+,C11: Image Mosaic (L1),"Default cell_size is 50px when parameter not provided",パラメータ未提供時のデフォルトcell_sizeは50px
+,C11: Image Mosaic (L1),Mosaic image is same size as original image,モザイク画像が元の画像と同じサイズ
+,C12: Local Table Data (L1),Correct data displayed based on provided JSON,提供されたJSONに基づいて正しいデータが表示
+,C12: Local Table Data (L1),"Delete or add button press immediately reflected in JSON",削除または追加ボタン押下がJSONに即座に反映
+,C12: Local Table Data (L1),"Save button press reflects modified data in JSON (including fields)",保存ボタン押下でJSONに変更データが反映（フィールド含む）
+,C12: Local Table Data (L1),"Deleted, added, or modified data saved correctly according to JSON structure","削除、追加、変更されたデータがJSON構造に従って正しく保存"
+,C13: Login System JSON (L3),Can register a user,ユーザーを登録できる
+,C13: Login System JSON (L3),Can register multiple users,複数のユーザーを登録できる
+,C13: Login System JSON (L3),Can log in,ログインできる
+,C13: Login System JSON (L3),Can log out,ログアウトできる
+,C13: Login System JSON (L3),Displays message when submitting empty fields,空のフィールド送信時にメッセージを表示
+,C13: Login System JSON (L3),UI adjusted with user experience in mind,UIがユーザーエクスペリエンスを考慮して調整されている
