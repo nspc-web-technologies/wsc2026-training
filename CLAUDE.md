@@ -24,7 +24,38 @@ Training repository for WorldSkills Competition 2026. Each module subdirectory m
 - Dev: `composer dev` (serves app, queue, logs, vite concurrently)
 - DocumentRoot: `17_module_b/` (replaces default `public/`)
 
-### 3_2025_restful_api (not started)
+### 3_2025_restful_api (Module C - RESTful API)
+
+- Framework: Laravel (PHP 8.2+)
+- DB: MySQL/MariaDB
+- Path: `3_2025_restful_api/` (design phase, implementation not started)
+
+### 4_2024_speedtest (Module A - Speed Test)
+
+- Stack: Vanilla HTML/JS
+- Path: `4_2024_speedtest/implementation/`
+
+### 5_2024_mobile-app (Module D - Mobile App)
+
+React implementation:
+
+- Framework: React 19 + React Router 7
+- Build: Vite 8
+- Path: `5_2024_mobile-app/implementation/react/`
+- Dev: `npm run dev`
+
+Vue implementation:
+
+- Framework: Vue 3 + Vue Router 4
+- Build: Vite 7
+- UI: Headless UI for Vue
+- Path: `5_2024_mobile-app/implementation/vue/`
+- Dev: `npm run dev`
+
+### training_environment
+
+- Docker Compose environment for local/GCE server setup
+- Path: `training_environment/server/`
 
 ## Markdown Formatting
 
