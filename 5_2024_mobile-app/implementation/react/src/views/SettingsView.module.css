@@ -1,0 +1,23 @@
+.settingsView {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 24px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.settingsView > * {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 24px;
+}
+
+.settingsView > * > * {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 8px;
+}

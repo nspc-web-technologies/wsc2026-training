@@ -1,0 +1,46 @@
+.header {
+  height: 80px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: #fff;
+  border-bottom: 1px solid #acacac;
+}
+
+.header button {
+  border: none;
+  background: royalblue;
+  color: #fff;
+}
+
+.main {
+  height: 100vh;
+  padding: 80px 0 53px;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #acacac;
+}
+
+.footer ul {
+  display: flex;
+}
+
+.footer ul li {
+  flex-grow: 1;
+}
+
+.footer ul li a {
+  width: 100%;
+  text-align: center;
+  padding: 16px;
+}

@@ -1,0 +1,30 @@
+.carparksView {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 24px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.carparksView > * {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 24px;
+}
+
+.carparksView > * > *,
+.carparksView > * > * > * {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 4px;
+}
+
+.carpark button {
+  background: teal;
+  color: #fff;
+  border: none;
+}
