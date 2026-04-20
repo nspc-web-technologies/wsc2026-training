@@ -1,0 +1,56 @@
+Check,URL,Item,Item_JP
+,(Mobile Web General),Header bar is always stuck to the top of the screen,Header barは常にscreenのtopに固定されている
+,(Mobile Web General),Navigation bar is always stuck to the bottom of the screen,Navigation barは常にscreenのbottomに固定されている
+,(Mobile Web General),"When main content is longer than viewport, scrolling happens only to main content; header and nav bar stay fixed",Main contentがviewportより長い場合、scrollingはmain contentのみに発生し、header barとnavigation barは固定されたまま
+,(Mobile Web General),Header bar may display current view title,Header barは現在のview titleを表示する場合がある
+,(Mobile Web General),Header bar provides navigation to go back,Header barにback navigationが提供されている
+,(Mobile Web General),"Navigation bar has 4 buttons: Carparks, Events, Weather, Setting","Navigation barに4つのbutton: Carparks, Events, Weather, Setting がある"
+,(Mobile Web General),manifest.json is configured for mobile web app,manifest.jsonがmobile web app用にconfigureされている
+,(Mobile Web General),Essential meta tags configured for both Android and iOS,AndroidとiOS両方のessential meta tagsがconfigureされている
+,(Mobile Web General),Viewport configured for mobile web friendly viewing,Viewportがmobile web friendly viewingにconfigureされている
+,(Mobile Web General),Good Chrome Lighthouse accessibility score,Chrome Lighthouse accessibilityのscoreが良好
+,(Mobile Web General),Easy-to-maintain JavaScript code,メンテナンスしやすいJavaScript code
+,Carpark,Displays a list of carpark records with availability count,Carparkのrecord listがavailability count付きで表示される
+,Carpark: Sorting,Toggle for switching between alphabet sorting and distance sorting,Alphabet sortingとdistance sortingを切り替えるtoggleがある
+,Carpark: Sorting,Sorting toggle setting is inside the Setting view,Sorting toggleのsettingはSetting view内にある
+,Carpark: Geolocation,"Geolocation can be manually set by URL query: ?latitude=45.755051&longitude=4.846358","GeolocationをURL queryで手動設定可能: ?latitude=45.755051&longitude=4.846358"
+,Carpark: Geolocation,Mobile web requests current geolocation as default method,Mobile webがdefaultのmethodとしてcurrent geolocationをrequestする
+,Carpark: Geolocation,Source code implements geolocation even if browser blocks it,Browserがblockした場合でもgeolocationのsource code implementationがある
+,Carpark: Focus,User can click a carpark to focus on it,Userがcarparkをclickしてfocusできる
+,Carpark: Focus,"Focused view displays only carpark name, distance, and availability number","Focused viewにcarpark name, distance, availability numberのみが表示される"
+,Carpark: Focus,User can go back to carpark list from focused view,Focused viewからcarpark listにback navigationできる
+,Carpark: Pin,Carpark can be pinned to top of the list,Carparkをlistのtopにpinできる
+,Carpark: Pin,Carpark can be unpinned,Carparkをunpinできる
+,Carpark: Pin,"Pinned carparks stay at top regardless of sorting method (alphabet or distance)","Pinされたcarparkはsortingのmethodにかかわらずtopに固定される"
+,Carpark: Pin,Pinned status saved to local storage,Pin statusがlocal storageにsaveされる
+,Carpark: Pin,Pinned status restored on page refresh,Page refresh時にpin statusがrestoreされる
+,Events,Event list displays events from default API data,Event listがdefault APIデータからeventsを表示する
+,Events,"Each event record shows image, event title, and event date","各event recordにimage, event title, event dateが表示される"
+,Events,Events listed from top to bottom,Eventsがtop to bottomでlistされる
+,Events: Filter,Event list can be filtered by beginning date,Beginning dateでevent listをfilterできる
+,Events: Filter,Event list can be filtered by ending date,Ending dateでevent listをfilterできる
+,Events: Filter,Input to select a beginning date and an input to select an ending date,Beginning dateを選択するinputとending dateを選択するinputがある
+,Events: Filter,Event list refreshes when date filter is applied,Date filterが適用されるとevent listがrefreshされる
+,Events: Filter,API called with beginning_date and ending_date query parameters,APIがbeginning_dateとending_dateのquery parameterで呼び出される
+,Events: Infinite Scroll,Further event data loads when user scrolls to bottom,Userがbottomまでscrollするとさらにevent dataがloadされる
+,Events: Infinite Scroll,Loading timing is well-tuned (not too late and not too early),Loadingのtimingが適切（遅すぎず早すぎない）
+,Events: Infinite Scroll,No duplicate records displayed,重複recordが表示されない
+,Events: Infinite Scroll,No missing records in the display,表示されるrecordに欠落がない
+,Events: Infinite Scroll,Scrolling feels smooth and not laggy,Scrollingがsmoothでlaggyでない
+,Weather,Shows upcoming week weather (7 days),Upcoming weekのweatherを表示（7 days）
+,Weather: Horizontal Scroll,Week weather is aligned horizontally,Week weatherがhorizontallyにalignされている
+,Weather: Horizontal Scroll,Weather snaps to the day when scrolling horizontally,Horizontal scrolling時にweatherがdayにsnapする
+,Weather: SVG,SVG icons displayed for each day based on weather status,Weather statusに基づく各dayのSVG iconsが表示される
+,Weather: SVG,SVG icons use data from responded JSON,SVG iconsがresponded JSONのdataを使用する
+,Weather: SVG,SVG has animated stroke effect on mouse hover,Mouse hover時にSVGにanimated stroke effectがある
+,Weather: SVG,"SVG stroke color is #1c3e60, stroke width 1, fill none","SVGのstroke colorが#1c3e60, stroke width 1, fill none"
+,Weather: SVG,"stroke-dasharray animation from 50 to 200 over 2 seconds","stroke-dasharray animationが2 secondsで50から200"
+,Weather: SVG,"stroke-dashoffset animation from 200 to 0","stroke-dashoffset animationが200から0"
+,Settings: Dark Theme,"Theme switching between dark theme, light theme, and system setting","Dark theme, light theme, system settingの間でtheme switching"
+,Settings: Carpark Sort,Toggle for alphabet vs distance sorting of carparks,Carparkのalphabet vs distance sortingのtoggle
+,Settings: Carpark Sort,Sorting toggle affects the carpark list view,Sorting toggleがcarpark list viewに影響する
+,(Data API),Mock API PHP file placed at wsXX.worldskills.org/module_d_api.php,Mock API PHP fileがwsXX.worldskills.org/module_d_api.phpに配置されている
+,(Data API),Carparks data from /module_d_api.php/carparks.json,Carparks dataを/module_d_api.php/carparks.jsonから取得
+,(Data API),Events data from /module_d_api.php/events.json,Events dataを/module_d_api.php/events.jsonから取得
+,(Data API),Weather data from /module_d_api.php/weather.json,Weather dataを/module_d_api.php/weather.jsonから取得
+,(Data API),"Events API pagination uses pages.next and pages.prev structure","Events APIのpaginationがpages.nextとpages.prev structureを使用"
