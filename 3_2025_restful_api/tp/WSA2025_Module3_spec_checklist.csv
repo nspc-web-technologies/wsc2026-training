@@ -1,0 +1,148 @@
+Check,URL,Item,Item_JP
+,(All Public APIs),"No authentication required for: POST /api/login, POST /api/register, GET /api/albums, GET /api/albums/{album_id}, GET /api/albums/{album_id}/cover, GET /api/albums/{album_id}/songs, GET /api/songs, GET /api/songs/{song_id}/cover","認証不要の対象: POST /api/login, POST /api/register, GET /api/albums, GET /api/albums/{album_id}, GET /api/albums/{album_id}/cover, GET /api/albums/{album_id}/songs, GET /api/songs, GET /api/songs/{song_id}/cover"
+,(All Protected APIs),Request: X-Authorization: Bearer <token> header required,X-Authorization: Bearer <token> headerが必須
+,(All Protected APIs),Returns 401 'Access Token is required' when X-Authorization header missing,X-Authorization headerが無い場合、401 'Access Token is required' を返す
+,(All Protected APIs),Returns 401 'Invalid Access Token' for invalid/expired/non-existent token,無効・有効期限切れ・存在しないtokenの場合、401 'Invalid Access Token' を返す
+,(All Protected APIs),Returns 403 'User is banned' when token owner is banned,tokenの所有者がbanされている場合、403 'User is banned' を返す
+,(All Protected APIs),"Applies to: POST /api/logout, GET /api/songs/{song_id}, GET /api/statistics, GET /api/users, PUT /api/users/{user_id}, PUT /api/users/{user_id}/ban, PUT /api/users/{user_id}/unban, POST /api/albums, PUT /api/albums/{album_id}, DELETE /api/albums/{album_id}, POST /api/albums/{album_id}/songs, PUT /api/albums/{album_id}/songs/order, POST /api/albums/{album_id}/songs/{song_id}, DELETE /api/albums/{album_id}/songs/{song_id}","対象: POST /api/logout, GET /api/songs/{song_id}, GET /api/statistics, GET /api/users, PUT /api/users/{user_id}, PUT /api/users/{user_id}/ban, PUT /api/users/{user_id}/unban, POST /api/albums, PUT /api/albums/{album_id}, DELETE /api/albums/{album_id}, POST /api/albums/{album_id}/songs, PUT /api/albums/{album_id}/songs/order, POST /api/albums/{album_id}/songs/{song_id}, DELETE /api/albums/{album_id}/songs/{song_id}"
+,(All Admin APIs),Returns 403 'Admin access required' when role != 'admin',roleが 'admin' でない場合、403 'Admin access required' を返す
+,(All Admin APIs),"Applies to: GET /api/users, PUT /api/users/{user_id}, PUT /api/users/{user_id}/ban, PUT /api/users/{user_id}/unban, POST /api/albums, PUT /api/albums/{album_id}, DELETE /api/albums/{album_id}, POST /api/albums/{album_id}/songs, PUT /api/albums/{album_id}/songs/order, POST /api/albums/{album_id}/songs/{song_id}, DELETE /api/albums/{album_id}/songs/{song_id}","対象: GET /api/users, PUT /api/users/{user_id}, PUT /api/users/{user_id}/ban, PUT /api/users/{user_id}/unban, POST /api/albums, PUT /api/albums/{album_id}, DELETE /api/albums/{album_id}, POST /api/albums/{album_id}/songs, PUT /api/albums/{album_id}/songs/order, POST /api/albums/{album_id}/songs/{song_id}, DELETE /api/albums/{album_id}/songs/{song_id}"
+,(Paginated APIs),"Applies to: GET /api/albums, GET /api/songs, GET /api/users","対象: GET /api/albums, GET /api/songs, GET /api/users"
+,(Paginated APIs),Cursor-based pagination: default 10 records per page,cursorベースのpagination: デフォルトは1ページあたり10件
+,(Paginated APIs),"next_cursor = Base64 encode of JSON {""id"":N} where N is last item's ID","next_cursor = JSON {""id"":N} のBase64エンコード（Nは最後のアイテムのID）"
+,(Paginated APIs),next_cursor is null when no more data,データがもう無い場合、next_cursorはnull
+,(Paginated APIs),prev_cursor included in meta,metaにprev_cursorを含む
+,(Paginated APIs),limit parameter adjusts records per page,limitパラメータで1ページあたりの件数を調整可能
+,(Paginated APIs),Returns 400 'Invalid parameter' when limit > 100 or not a number,limitが100超または数値でない場合、400 'Invalid parameter' を返す
+,(Paginated APIs),Returns 400 'Invalid cursor' for malformed cursor,不正なcursorの場合、400 'Invalid cursor' を返す
+,(Album owner APIs),Returns 403 'Access denied' when authenticated user is not the album's publisher,認証済みユーザーがアルバムのpublisherでない場合、403 'Access denied' を返す
+,(Album owner APIs),"Applies to: PUT /api/albums/{album_id}, DELETE /api/albums/{album_id}, POST /api/albums/{album_id}/songs, PUT /api/albums/{album_id}/songs/order, POST /api/albums/{album_id}/songs/{song_id}, DELETE /api/albums/{album_id}/songs/{song_id}","対象: PUT /api/albums/{album_id}, DELETE /api/albums/{album_id}, POST /api/albums/{album_id}/songs, PUT /api/albums/{album_id}/songs/order, POST /api/albums/{album_id}/songs/{song_id}, DELETE /api/albums/{album_id}/songs/{song_id}"
+,(User management APIs),Returns 404 'User not found' for non-existent user_id,存在しないuser_idの場合、404 'User not found' を返す
+,(User management APIs),"Applies to: PUT /api/users/{user_id}, PUT /api/users/{user_id}/ban, PUT /api/users/{user_id}/unban","対象: PUT /api/users/{user_id}, PUT /api/users/{user_id}/ban, PUT /api/users/{user_id}/unban"
+,(Album APIs with {album_id}),Returns 404 'Not Found' for non-existent album,存在しないアルバムの場合、404 'Not Found' を返す
+,(Album APIs with {album_id}),"Applies to: GET /api/albums/{album_id}, GET /api/albums/{album_id}/cover, GET /api/albums/{album_id}/songs, PUT /api/albums/{album_id}, DELETE /api/albums/{album_id}, POST /api/albums/{album_id}/songs, PUT /api/albums/{album_id}/songs/order, POST /api/albums/{album_id}/songs/{song_id}, DELETE /api/albums/{album_id}/songs/{song_id}","対象: GET /api/albums/{album_id}, GET /api/albums/{album_id}/cover, GET /api/albums/{album_id}/songs, PUT /api/albums/{album_id}, DELETE /api/albums/{album_id}, POST /api/albums/{album_id}/songs, PUT /api/albums/{album_id}/songs/order, POST /api/albums/{album_id}/songs/{song_id}, DELETE /api/albums/{album_id}/songs/{song_id}"
+,POST /api/login,Request: Content-Type application/json with username and password,リクエスト: Content-Type application/json、usernameとpasswordを含む
+,POST /api/login,"Success 200: returns {success: true,  data: {token,  user}}","成功 200: {success: true, data: {token, user}} を返す"
+,POST /api/login,token = MD5 hash of username as lowercase hex string,token = usernameのMD5ハッシュ（小文字の16進数文字列）
+,POST /api/login,"Response user fields: id, username, email, role, created_at, updated_at","レスポンスのuserフィールド: id, username, email, role, created_at, updated_at"
+,POST /api/login,Timestamps in .000Z format (ISO 8601 UTC with milliseconds),タイムスタンプは .000Z 形式（ISO 8601 UTC、ミリ秒付き）
+,POST /api/login,Returns 400 'Login failed' on incorrect username or password,usernameまたはpasswordが誤っている場合、400 'Login failed' を返す
+,POST /api/login,Returns 400 'Validation failed' when username or password missing,usernameまたはpasswordが欠落している場合、400 'Validation failed' を返す
+,POST /api/login,Returns 403 'User is banned' when target account is blocked,対象アカウントがブロックされている場合、403 'User is banned' を返す
+,POST /api/register,"Request: Content-Type application/json with username,  email,  password","リクエスト: Content-Type application/json、username, email, passwordを含む"
+,POST /api/register,"Success 201 Created: returns {success: true,  data: {user}}","成功 201 Created: {success: true, data: {user}} を返す"
+,POST /api/register,"Response user fields: id, username, email, role, created_at, updated_at","レスポンスのuserフィールド: id, username, email, role, created_at, updated_at"
+,POST /api/register,Returns 400 'Validation failed' when required fields missing,必須フィールドが欠落している場合、400 'Validation failed' を返す
+,POST /api/register,Returns 400 'Validation failed' for invalid email format,emailの形式が無効な場合、400 'Validation failed' を返す
+,POST /api/register,Returns 409 'Username already taken' when username in use,usernameが使用中の場合、409 'Username already taken' を返す
+,POST /api/register,Returns 409 'Email already taken' when email in use,emailが使用中の場合、409 'Email already taken' を返す
+,GET /api/albums,"Success 200: returns {success: true,  data: [...],  meta: {prev_cursor,  next_cursor}}","成功 200: {success: true, data: [...], meta: {prev_cursor, next_cursor}} を返す"
+,GET /api/albums,"Album list item fields: id, title, artist, release_year, publisher{id, username, email}","アルバム一覧のアイテムフィールド: id, title, artist, release_year, publisher{id, username, email}"
+,GET /api/albums,"Query parameters: capital, year, limit, cursor","クエリパラメータ: capital, year, limit, cursor"
+,GET /api/albums,Example URL uses 'filter' param (filter=A) alongside 'capital' param,サンプルURLは 'filter' パラメータ（filter=A）も 'capital' と併用
+,GET /api/albums,'capital' parameter filters by first letter of title (case-insensitive),'capital' パラメータはtitleの先頭文字でフィルタ（大文字小文字不問）
+,GET /api/albums,'year' parameter supports single year (e.g. 2020),'year' パラメータは単一の年をサポート（例: 2020）
+,GET /api/albums,'year' parameter supports year range (e.g. 2018-2020),'year' パラメータは年の範囲をサポート（例: 2018-2020）
+,GET /api/albums,No 'year' parameter returns albums from all years,'year' パラメータなしの場合、全年のアルバムを返す
+,GET /api/albums,Returns 400 'Invalid year format' for malformed year (e.g. 'abc' or '2000-1990'),"不正な年の形式（例: 'abc', '2000-1990'）の場合、400 'Invalid year format' を返す"
+,GET /api/albums,Soft-deleted albums excluded from results,soft deleteされたアルバムは結果から除外
+,GET /api/albums/{album_id},"Success 200: returns {success: true,  data: {...}}","成功 200: {success: true, data: {...}} を返す"
+,GET /api/albums/{album_id},"Album detail fields: id, title, artist, release_year, genre, description, created_at, updated_at, publisher{id, username, email}","アルバム詳細のフィールド: id, title, artist, release_year, genre, description, created_at, updated_at, publisher{id, username, email}"
+,GET /api/albums/{album_id},Returns 404 'Not Found' for soft-deleted album,soft deleteされたアルバムの場合、404 'Not Found' を返す
+,GET /api/albums/{album_id}/cover,Dynamically composed based on is_cover status of album's songs,アルバムの曲のis_coverステータスに基づいて動的に合成
+,GET /api/albums/{album_id}/cover,"Success 200: Content-Type image/jpeg, binary image data",成功 200: Content-Type image/jpeg、バイナリ画像データ
+,GET /api/albums/{album_id}/cover,Cover composed from songs with is_cover=true,is_cover=true の曲からカバーを合成
+,GET /api/albums/{album_id}/cover,Combination order follows the order sequence of songs within the album,合成の順序はアルバム内の曲のorder順に従う
+,GET /api/albums/{album_id}/cover,1 cover image: full image,カバー画像1枚: 全面表示
+,GET /api/albums/{album_id}/cover,2 cover images: side-by-side,カバー画像2枚: 左右並び
+,GET /api/albums/{album_id}/cover,3 cover images: left full-height + right top + right bottom,カバー画像3枚: 左全高 + 右上 + 右下
+,GET /api/albums/{album_id}/cover,Returns 400 'Too many covers provided' when album has more than 3 is_cover songs,アルバムのis_cover曲が3つを超える場合、400 'Too many covers provided' を返す
+,GET /api/albums/{album_id}/cover,Returns 404 'Cover Not Found' when no is_cover songs or cover image file missing,is_cover曲がないまたはカバー画像ファイルが欠落の場合、404 'Cover Not Found' を返す
+,GET /api/albums/{album_id}/songs,Order by 'order' field asc,'order' フィールドで昇順
+,GET /api/albums/{album_id}/songs,"Success 200: returns {success: true,  data: [...]}","成功 200: {success: true, data: [...]} を返す"
+,GET /api/albums/{album_id}/songs,"Song list item fields: id, album_id, title, label[], duration_seconds, order, is_cover, cover_image_url","曲一覧のアイテムフィールド: id, album_id, title, label[], duration_seconds, order, is_cover, cover_image_url"
+,GET /api/albums/{album_id}/songs,cover_image_url format: /api/songs/{song_id}/cover,cover_image_urlの形式: /api/songs/{song_id}/cover
+,GET /api/songs,"Success 200: returns {success: true,  data: [...],  meta: {next_cursor,  prev_cursor}}","成功 200: {success: true, data: [...], meta: {next_cursor, prev_cursor}} を返す"
+,GET /api/songs,"Song list item fields: id, album_id, title, label[], duration_seconds, album_title, cover_image_url","曲一覧のアイテムフィールド: id, album_id, title, label[], duration_seconds, album_title, cover_image_url"
+,GET /api/songs,"Query parameters: keyword, limit, cursor","クエリパラメータ: keyword, limit, cursor"
+,GET /api/songs,Example URL uses filter[keyword]=love alongside 'keyword' param,サンプルURLは filter[keyword]=love も 'keyword' と併用
+,GET /api/songs,'keyword' parameter filters by partial title match,'keyword' パラメータはtitleの部分一致でフィルタ
+,GET /api/songs,Soft-deleted songs excluded from results,soft deleteされた曲は結果から除外
+,GET /api/songs/{song_id}/cover,"Success 200: Content-Type image/jpeg, binary image data",成功 200: Content-Type image/jpeg、バイナリ画像データ
+,GET /api/songs/{song_id}/cover,Returns 404 'Cover Not Found' when cover image does not exist,カバー画像が存在しない場合、404 'Cover Not Found' を返す
+,GET /api/songs/{song_id}/cover,Returns 404 'Not Found' for non-existent song,存在しない曲の場合、404 'Not Found' を返す
+,POST /api/logout,Success 200: returns {success: true},成功 200: {success: true} を返す
+,POST /api/logout,Access Token must be deleted (invalidated) on logout,ログアウト時にAccess Tokenを削除（無効化）する必要がある
+,POST /api/logout,Subsequent requests with same token return 401 'Invalid Access Token',同じtokenでの後続リクエストは 401 'Invalid Access Token' を返す
+,GET /api/songs/{song_id},"Success 200: returns {success: true,  data: {...}}","成功 200: {success: true, data: {...}} を返す"
+,GET /api/songs/{song_id},"Song detail fields: id, album_id, title, duration_seconds, order, label[], view_count, is_cover, lyrics, cover_image_url, created_at, updated_at","曲詳細のフィールド: id, album_id, title, duration_seconds, order, label[], view_count, is_cover, lyrics, cover_image_url, created_at, updated_at"
+,GET /api/songs/{song_id},The view count will be incremented on each call,呼び出し毎にview countがインクリメントされる
+,GET /api/songs/{song_id},Returns 404 'Not Found' for non-existent or soft-deleted song,存在しないまたはsoft deleteされた曲の場合、404 'Not Found' を返す
+,GET /api/statistics,"Query parameters: metrics (label|album|song), labels (optional)","クエリパラメータ: metrics (label|album|song), labels (任意)"
+,GET /api/statistics,If metrics is 'label' or 'album': Group by that metrics and order by view_count,metricsが 'label' または 'album' の場合: そのmetricsでグループ化しview_countで並べ替え
+,GET /api/statistics,"If metrics is 'song': Filter by one or more labels (e.g. Pop,Rock) and order by view_count","metricsが 'song' の場合: 1つ以上のlabels（例: Pop,Rock）でフィルタしview_countで並べ替え"
+,GET /api/statistics,metrics=song: returns songs ordered by view_count desc,metrics=song: view_count降順で曲を返す
+,GET /api/statistics,metrics=song sample: full song detail fields (same as GET /api/songs/{song_id}),metrics=songのサンプル: 完全な曲詳細フィールド（GET /api/songs/{song_id} と同じ）
+,GET /api/statistics,"metrics=album: returns albums with publisher and total_view_count, ordered by total_view_count desc",metrics=album: publisherとtotal_view_count付きのアルバムをtotal_view_count降順で返す
+,GET /api/statistics,"metrics=album sample fields: id, title, artist, release_year, genre, description, publisher{id, username, email}, created_at, updated_at, total_view_count","metrics=albumのサンプルフィールド: id, title, artist, release_year, genre, description, publisher{id, username, email}, created_at, updated_at, total_view_count"
+,GET /api/statistics,metrics=label: returns label groups each with songs array,metrics=label: 曲の配列を持つラベルグループを返す
+,GET /api/statistics,"metrics=label sample fields per group: total_view_count, label (string), songs[]","metrics=labelのグループ毎のサンプルフィールド: total_view_count, label (string), songs[]"
+,GET /api/statistics,metrics=label: each label includes its top 10 songs ordered by view count desc,metrics=label: 各ラベルはview count降順の上位10曲を含む
+,GET /api/statistics,metrics=label sample song fields: same as GET /api/songs/{song_id} detail fields,metrics=labelの曲サンプルフィールド: GET /api/songs/{song_id} の詳細フィールドと同じ
+,GET /api/statistics,"metrics=label: optional 'labels' parameter to filter for specific labels (e.g. labels=Pop,Rock)","metrics=label: 任意の 'labels' パラメータで特定ラベルをフィルタ（例: labels=Pop,Rock）"
+,GET /api/statistics,Returns 400 'Validation failed' when metrics missing or invalid value,metricsが欠落または無効な値の場合、400 'Validation failed' を返す
+,GET /api/users,"Query parameters: cursor, limit","クエリパラメータ: cursor, limit"
+,GET /api/users,"Success 200: returns {success: true,  data: [...],  meta: {next_cursor,  prev_cursor}}","成功 200: {success: true, data: [...], meta: {next_cursor, prev_cursor}} を返す"
+,GET /api/users,"User list item fields: id, username, email, role, is_banned, created_at","ユーザー一覧のアイテムフィールド: id, username, email, role, is_banned, created_at"
+,PUT /api/users/{user_id},"Request: Content-Type application/json, body {role: 'admin' or 'user'}",リクエスト: Content-Type application/json、ボディ {role: 'admin' or 'user'}
+,PUT /api/users/{user_id},"Success 200: returns updated user with id, username, email, role, is_banned, created_at, updated_at","成功 200: id, username, email, role, is_banned, created_at, updated_at を含む更新済みユーザーを返す"
+,PUT /api/users/{user_id},System must maintain at least one administrator account,システムは少なくとも1つの管理者アカウントを維持する必要がある
+,PUT /api/users/{user_id},Role of a banned user cannot be updated,banされたユーザーのroleは更新できない
+,PUT /api/users/{user_id},Returns 400 'Validation failed' when role missing or invalid value,roleが欠落または無効な値の場合、400 'Validation failed' を返す
+,PUT /api/users/{user_id},Returns 403 'Last admin demotion forbidden' when demoting last admin,最後の管理者を降格する場合、403 'Last admin demotion forbidden' を返す
+,PUT /api/users/{user_id},Returns 409 'Banned user update failed' when target user is banned,対象ユーザーがbanされている場合、409 'Banned user update failed' を返す
+,PUT /api/users/{user_id}/ban,"Success 200: returns user with id, username, email, role, is_banned=true, updated_at (no created_at)","成功 200: id, username, email, role, is_banned=true, updated_at を含むユーザーを返す（created_atなし）"
+,PUT /api/users/{user_id}/ban,Can't ban itself,自分自身をbanできない
+,PUT /api/users/{user_id}/ban,Returns 400 'Cannot ban self' when admin bans themselves,管理者が自分自身をbanする場合、400 'Cannot ban self' を返す
+,PUT /api/users/{user_id}/ban,Returns 403 'Cannot ban another admin' when target user is admin,対象ユーザーが管理者の場合、403 'Cannot ban another admin' を返す
+,PUT /api/users/{user_id}/unban,"Success 200: returns user with id, username, email, role, is_banned=false, updated_at (no created_at)","成功 200: id, username, email, role, is_banned=false, updated_at を含むユーザーを返す（created_atなし）"
+,POST /api/albums,Request: Content-Type multipart/form-data,リクエスト: Content-Type multipart/form-data
+,POST /api/albums,"Body fields: title (string), artist (string), release_year (number), genre (string), description (string)","ボディフィールド: title (string), artist (string), release_year (number), genre (string), description (string)"
+,POST /api/albums,"Success 201 Created: returns album with id, title, artist, release_year, genre, description, publisher{id, username, email}, created_at, updated_at","成功 201 Created: id, title, artist, release_year, genre, description, publisher{id, username, email}, created_at, updated_at を含むアルバムを返す"
+,POST /api/albums,publisher is auto-assigned from authenticated user,publisherは認証済みユーザーから自動的に割り当てられる
+,POST /api/albums,Returns 400 'Validation failed' when required fields missing or release_year not numeric,必須フィールドが欠落またはrelease_yearが数値でない場合、400 'Validation failed' を返す
+,PUT /api/albums/{album_id},Request: Content-Type application/json,リクエスト: Content-Type application/json
+,PUT /api/albums/{album_id},"Body fields: title (string), description (string)","ボディフィールド: title (string), description (string)"
+,PUT /api/albums/{album_id},Success 200: returns album with full fields + publisher,成功 200: 全フィールド + publisher 付きのアルバムを返す
+,PUT /api/albums/{album_id},"Only title and description are updatable; artist, release_year, genre remain unchanged","titleとdescriptionのみ更新可能。artist, release_year, genreは変更不可"
+,PUT /api/albums/{album_id},Returns 400 'Validation failed' when title or description missing,titleまたはdescriptionが欠落の場合、400 'Validation failed' を返す
+,PUT /api/albums/{album_id},Returns 404 'Not Found' also for soft-deleted album,soft deleteされたアルバムの場合も404 'Not Found' を返す
+,DELETE /api/albums/{album_id},This deletion is a soft delete,この削除はsoft delete
+,DELETE /api/albums/{album_id},All songs in album are also soft-deleted (cascade),アルバム内の全曲もsoft delete（カスケード）
+,DELETE /api/albums/{album_id},Success 200: returns {success: true},成功 200: {success: true} を返す
+,POST /api/albums/{album_id}/songs,Request: Content-Type multipart/form-data,リクエスト: Content-Type multipart/form-data
+,POST /api/albums/{album_id}/songs,"Body fields: title (string), duration_seconds (number), label (string optional), lyrics (string), cover_image (file image/jpeg), Is_cover (boolean)","ボディフィールド: title (string), duration_seconds (number), label (string, 任意), lyrics (string), cover_image (file image/jpeg), Is_cover (boolean)"
+,POST /api/albums/{album_id}/songs,Labels must be comma-separated and must exist in the default labels,labelsはカンマ区切りで、デフォルトのlabelsに存在する必要がある
+,POST /api/albums/{album_id}/songs,"Success 201 Created: returns song with id, album_id, title, duration_seconds, lyrics, order, view_count, label[], is_cover, cover_image_url, created_at, updated_at","成功 201 Created: id, album_id, title, duration_seconds, lyrics, order, view_count, label[], is_cover, cover_image_url, created_at, updated_at を含む曲を返す"
+,POST /api/albums/{album_id}/songs,Adding a song with is_cover affects the album cover combination,is_cover付きの曲を追加するとアルバムカバーの合成に影響する
+,POST /api/albums/{album_id}/songs,Returns 400 'Validation failed' when required fields missing,必須フィールドが欠落している場合、400 'Validation failed' を返す
+,POST /api/albums/{album_id}/songs,Returns 400 'Validation failed' when label name does not exist in default labels,label名がデフォルトのlabelsに存在しない場合、400 'Validation failed' を返す
+,POST /api/albums/{album_id}/songs,Returns 400 'Invalid file type' when cover_image is not acceptable image format,cover_imageが受け入れ可能な画像形式でない場合、400 'Invalid file type' を返す
+,POST /api/albums/{album_id}/songs,Returns 400 'Too many covers provided' when is_cover=true would make album exceed 3 cover songs,is_cover=trueにするとアルバムのカバー曲が3を超える場合、400 'Too many covers provided' を返す
+,PUT /api/albums/{album_id}/songs/order,"Request: Content-Type application/json, body {song_ids: [302, 301]}","リクエスト: Content-Type application/json、ボディ {song_ids: [302, 301]}"
+,PUT /api/albums/{album_id}/songs/order,Success 200: returns {success: true},成功 200: {success: true} を返す
+,PUT /api/albums/{album_id}/songs/order,Sorting songs with is_cover affects the album cover combination,is_cover付きの曲の並べ替えはアルバムカバーの合成に影響する
+,PUT /api/albums/{album_id}/songs/order,"Returns 400 'Validation failed' when song_ids contains invalid IDs, IDs not belonging to album, or does not include all songs",song_idsに無効なID、アルバムに属さないID、または全曲を含まない場合、400 'Validation failed' を返す
+,POST /api/albums/{album_id}/songs/{song_id},Request: Content-Type multipart/form-data,リクエスト: Content-Type multipart/form-data
+,POST /api/albums/{album_id}/songs/{song_id},"Body fields: title (string), duration_seconds (number), label (string), lyrics (string), cover_image (file image/jpeg), Is_cover (boolean)","ボディフィールド: title (string), duration_seconds (number), label (string), lyrics (string), cover_image (file image/jpeg), Is_cover (boolean)"
+,POST /api/albums/{album_id}/songs/{song_id},Labels must be comma-separated and must exist in the default labels,labelsはカンマ区切りで、デフォルトのlabelsに存在する必要がある
+,POST /api/albums/{album_id}/songs/{song_id},Success 200: returns updated song with same fields as POST create response,成功 200: POST作成レスポンスと同じフィールドの更新済み曲を返す
+,POST /api/albums/{album_id}/songs/{song_id},Modifying a song's is_cover affects the album cover combination,曲のis_coverを変更するとアルバムカバーの合成に影響する
+,POST /api/albums/{album_id}/songs/{song_id},Returns 400 'Validation failed' when required fields missing or unknown label name,必須フィールドが欠落または不明なlabel名の場合、400 'Validation failed' を返す
+,POST /api/albums/{album_id}/songs/{song_id},Returns 400 'Invalid file type' when cover_image provided but not acceptable format,cover_imageが提供されたが受け入れ可能な形式でない場合、400 'Invalid file type' を返す
+,POST /api/albums/{album_id}/songs/{song_id},Returns 400 'Too many covers provided' when flipping is_cover to true would exceed 3,is_coverをtrueに変更すると3を超える場合、400 'Too many covers provided' を返す
+,POST /api/albums/{album_id}/songs/{song_id},Returns 404 'Not Found' also for non-existent song,存在しない曲の場合も404 'Not Found' を返す
+,DELETE /api/albums/{album_id}/songs/{song_id},This deletion is a soft delete,この削除はsoft delete
+,DELETE /api/albums/{album_id}/songs/{song_id},Deleting a song with is_cover affects the album cover combination,is_cover付きの曲を削除するとアルバムカバーの合成に影響する
+,DELETE /api/albums/{album_id}/songs/{song_id},Success 200: returns {success: true},成功 200: {success: true} を返す
+,DELETE /api/albums/{album_id}/songs/{song_id},Returns 404 'Not Found' also for non-existent song,存在しない曲の場合も404 'Not Found' を返す

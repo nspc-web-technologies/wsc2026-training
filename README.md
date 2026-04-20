@@ -31,7 +31,38 @@ training/
 │       ├── checklist.md          # Implementation checklist
 │       └── laravel/              # Laravel implementation
 │
-├── 3_2025_restful_api/           # WSC2025 RESTful API (not started)
+├── 3_2025_restful_api/           # WSA2025 Module C - RESTful API
+│   ├── tp/                       # Task specification & marking scheme
+│   │   ├── WSA2025_Module3_RestfulAPI.md
+│   │   ├── WSA2025_Module3_spec_checklist.csv
+│   │   └── jp/
+│   ├── design/                   # Design documents (EN & JP)
+│   │   ├── 1_db.md               # Database schema
+│   │   ├── 2_api.md              # API endpoints
+│   │   ├── 3_structure.md        # Project structure
+│   │   ├── 4_tasks.md            # Implementation task list
+│   │   ├── 5_notes.md            # Notes
+│   │   └── jp/                   # Japanese translations
+│   └── implementation/           # (not yet created)
+│
+├── 4_2024_speedtest/             # WSC2024 Module A - Speed Test
+│   ├── tp/                       # Task specification & marking scheme
+│   │   ├── WSC2024_TP17_ModuleA_SpeedTest.md
+│   │   ├── WSC2024_TP17_spec_checklist.csv
+│   │   └── jp/
+│   └── implementation/           # HTML/JS implementation
+│
+├── 5_2024_mobile-app/            # WSC2024 Module D - Mobile App
+│   ├── tp/                       # Task specification & marking scheme
+│   │   ├── WSC2024_TP17_MD_actual_en.md
+│   │   ├── WSC2024_TP17_MD_spec_checklist.csv
+│   │   └── jp/
+│   └── implementation/           # Implementation
+│       ├── react/                # React 19 implementation (React Router, Vite)
+│       └── vue/                  # Vue 3 implementation (Vue Router, Vite)
+│
+├── training_environment/         # Training server setup
+│   └── server/                   # Docker Compose (local/GCE)
 │
 ├── CLAUDE.md                     # Claude Code development guidelines
 └── README.md

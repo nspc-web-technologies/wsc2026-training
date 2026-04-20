@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .counter {
+            border: 1px solid #acacac;
+            width: max-content;
+            text-align: center;
+            padding: 16px;
+            display: inline-flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <p><button onclick="addCounter()">Add a Counter</button></p>
+    <div class="counters"></div>
+    <script>
+        const counters = [];
+
+        function addCounter() {
+            counters.push(0);
+            document.querySelector('.counters').insertAdjacentHTML('beforeend', `
+            <div class="counter">
+                <div class="count">0</div>
+                <div>
+                    <button onclick="changeCounter(event,${counters.length - 1},-1)">Decrease</button>
+                    <button onclick="changeCounter(event,${counters.length - 1},1)">Increase</button>
+                    </div>
+                    </div>
+                    `);
+        }
+
+        function changeCounter(event, index, delta) {
+            counters[index] = counters[index] + delta;
+            event.target.closest('.counter').querySelector('.count').innerText = counters[index];
+        }
+    </script>
+</body>
+
+</html>

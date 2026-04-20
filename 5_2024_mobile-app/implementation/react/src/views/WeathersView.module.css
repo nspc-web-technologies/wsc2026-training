@@ -1,0 +1,51 @@
+.weathersView {
+  padding: 24px 0;
+  height: 100%;
+}
+
+.scroll {
+  overflow-x: auto;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  scroll-snap-type: x mandatory;
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll ul {
+  width: max-content;
+  display: flex;
+  padding: 0 50px;
+  gap: 32px;
+}
+
+.scroll ul li {
+  flex: 0 0 330px;
+  border: 1px solid #acacac;
+  text-align: center;
+  padding: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  scroll-snap-align: center;
+}
+
+.scroll ul li svg {
+  transition: all 2s ease;
+  stroke-dasharray: 50;
+  stroke-dashoffset: 200;
+  fill: #000;
+  stroke: transparent;
+}
+
+.scroll ul li svg:hover {
+  animation: stroke-animation 2s linear forwards;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 0;
+  fill: transparent;
+  stroke: #1c3e60;
+}

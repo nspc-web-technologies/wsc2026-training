@@ -1,0 +1,45 @@
+body {
+    background: #000;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+.box {
+    background: #000;
+    width: 200px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    filter: blur(6px) contrast(20);
+    padding: 30px;
+    position: relative;
+}
+
+.bar {
+    width: 100%;
+    height: 20px;
+    background: #fff;
+    border-radius: 999em;
+}
+
+.circle {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background: #fff;
+    border-radius: 50%;
+    animation: anime 2s infinite linear;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes anime {
+    to {
+        transform: translateY(130px);
+    }
+}
