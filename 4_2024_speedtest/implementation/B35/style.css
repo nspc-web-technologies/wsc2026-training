@@ -1,0 +1,12 @@
+body{
+    background: #efefef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    height: 100vh;
+    margin: 0;
+}
+canvas{
+    background: #fff;
+}

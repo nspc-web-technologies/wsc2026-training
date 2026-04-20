@@ -1,0 +1,38 @@
+div {
+    position: relative;
+    width: 500px;
+    height: 333px;
+}
+
+div::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 100%;
+    background: url(./splitter.svg) center/cover;
+    z-index: 400;
+    top: 0;
+    left: var(--pos, 50%);
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+input {
+    cursor: pointer;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 300;
+    opacity: 0;
+}
+
+img {
+    position: absolute;
+    width: 500px;
+    user-select: none;
+}
+
+img:nth-of-type(2) {
+    clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0);
+}

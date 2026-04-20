@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <div>
+        <input type="number" min="0" step="1">
+        <button onclick="drawOnclick()">draw</button>
+    </div>
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        function draw(p1, p2, p3, d) {
+            if (d === 0) {
+                ctx.beginPath();
+                ctx.moveTo(p1.x, p1.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.lineTo(p3.x, p3.y);
+                ctx.fillStyle = "#000";
+                ctx.fill();
+                return;
+            }
+
+            const m12 = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2, };
+            const m23 = { x: (p2.x + p3.x) / 2, y: (p2.y + p3.y) / 2, };
+            const m31 = { x: (p3.x + p1.x) / 2, y: (p3.y + p1.y) / 2, };
+
+            draw(p1, m12, m31, d - 1);
+            draw(m12, p2, m23, d - 1);
+            draw(m31, m23, p3, d - 1);
+        }
+        function drawOnclick() {
+            const p1 = { x: 0, y: 500 };
+            const p2 = { x: 500, y: 500 };
+            const p3 = { x: 250, y: 0 };
+            ctx.fillStyle = "#fff";
+            ctx.fillRect(0, 0, 500, 500);
+            ctx.fill();
+            draw(p1, p2, p3, Number(document.querySelector('input').value));
+        }
+    </script>
+</body>
+
+</html>
