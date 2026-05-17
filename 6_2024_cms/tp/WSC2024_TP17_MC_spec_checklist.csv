@@ -1,0 +1,64 @@
+Check,URL,Item,Item_JP
+OK,(General),Site is accessible at http://wsXX.worldskills.org/XX_module_C/,サイトが http://wsXX.worldskills.org/XX_module_C/ でアクセス可能
+OK,(General),No database is used — content is served from the content-pages folder,database を使用せず content-pages folder からコンテンツを提供する
+OK,(General),Existing structure of content-pages folder is unchanged,content-pages folder の既存の構造が変更されていない
+OK,(General),Project redirects correctly from wsXX.worldskills.org/XX_module_c/,wsXX.worldskills.org/XX_module_c/ から正しく redirect する
+NG→OK,(General),Accessibility — aXe full page scan passes without critical violations,aXe による full page scan が critical violation なしで通過する
+Almost→OK,(General),Social sharing meta tags defined for each single heritage page,各 heritage page に social sharing meta tag が定義されている
+OK,(General),.gitignore file skips node_modules and other temporary/built folders,.gitignore が node_modules および temporary/built folder を除外する
+Skip,(General),Project assessed with Google Chrome browser,Google Chrome browser で動作する
+Skip,(Marking),Sub-criteria 1 Files and Listing: 7.0 marks,Sub-criteria 1 Files and Listing: 7.0 点
+Skip,(Marking),Sub-criteria 2 Search and Tags: 2.0 marks,Sub-criteria 2 Search and Tags: 2.0 点
+Skip,(Marking),Sub-criteria 3 Loading files: 5.5 marks,Sub-criteria 3 Loading files: 5.5 点
+Skip,(Marking),Sub-criteria 4 Layout: 6.75 marks,Sub-criteria 4 Layout: 6.75 点
+OK,URL Routes: Index,Route /XX_module_c/ serves the index listing,/XX_module_c/ が index listing を表示する
+OK,URL Routes: Heritage Page,Route /XX_module_c/heritages/YYYY-MM-DD-slug serves the individual page (.html or .txt),/XX_module_c/heritages/YYYY-MM-DD-slug が個別 page を表示する（.html または .txt）
+OK,URL Routes: Sub-folder,Route /XX_module_c/heritages/sub-folder-name lists contents of the sub-folder,/XX_module_c/heritages/sub-folder-name が sub-folder の contents を一覧表示する
+OK,URL Routes: Nested Page,Route /XX_module_c/heritages/sub-folder-name/YYYY-MM-DD-slug serves nested page,/XX_module_c/heritages/sub-folder-name/YYYY-MM-DD-slug が nested page を表示する
+OK,URL Routes: Deep Nested,Route supports two-level nested sub-folders (sub-folder-1/sub-folder-2/slug),2段階 nested sub-folder（sub-folder-1/sub-folder-2/slug）を URL route がサポートする
+NG→OK,URL Routes: Tags,Route /XX_module_c/tags/tag-name-here shows all pages with the given tag,/XX_module_c/tags/tag-name-here が指定 tag を含む全 page を一覧表示する
+OK,Filename: Format,Filenames follow YYYY-MM-DD-title-slug.html or .txt convention,ファイル名が YYYY-MM-DD-title-slug.html または .txt の convention に従う
+OK,Listing Content,Listing shows title and summary for each page,一覧に各 page の title と summary が表示される
+OK,Listing Content,Clicking title links to that single content page,title をクリックすると該当 content page に遷移する
+NG→OK,Listing Content,Clicking summary links to that single content page,summary をクリックすると該当 content page に遷移する
+OK,Listing Content,Future-dated pages are excluded from the listing,未来の日付の page が一覧から除外される
+OK,Listing Content,Draft pages (draft: true in front-matter) are excluded from the listing,draft page（front-matter で draft: true）が一覧から除外される
+OK,Listing Content,Pages without YYYY-MM-DD- prefix are hidden from the listing,YYYY-MM-DD- prefix のない page が一覧から非表示になる
+OK,Listing Content,Sub-folders are listed and linked in the listing,sub-folder が一覧に表示されリンクされる
+OK,Listing Content,Clicking sub-folder name navigates into and lists its contents,sub-folder 名をクリックするとその contents が一覧表示される
+OK,Listing Order,Sub-folders appear before content pages in the listing,一覧では sub-folder が content page より先に表示される
+OK,Listing Order,Sub-folders are listed in alphabetical order,sub-folder がアルファベット順に表示される
+OK,Listing Order,Content pages are listed in reversed alphabetical order (latest first),content page が逆アルファベット順（最新が先頭）に表示される
+OK,Front-matter: title,front-matter title key is parsed and used,front-matter の title key が parse され使用される
+OK,Front-matter: tags,"front-matter tags key is parsed (comma or comma-space separated)",front-matter の tags key が parse される（comma または comma-space 区切り）
+OK,Front-matter: draft,front-matter draft key is parsed (only true is treated as draft),front-matter の draft key が parse される（true のみ draft として扱われる）
+OK,Front-matter: summary,front-matter summary key is parsed (one line) and used in listing,front-matter の summary key（1行）が parse され一覧で使用される
+OK,Front-matter: optional,Pages without front-matter are handled correctly,front-matter のない page が正しく処理される
+OK,Cover Image,Cover image is displayed at top of heritage page,cover image が heritage page の先頭に表示される
+OK,Cover Image,Cover path is read from front-matter cover key,cover の path が front-matter の cover key から読み取られる
+NG→OK,"Cover Image","If cover is not in front-matter, same filename from images folder is used","cover が front-matter にない場合、images folder の同名ファイルが使用される"
+OK,Cover Image Styling,Subtle spotlight effect is applied to the cover image,cover image に subtle spotlight effect が適用される
+OK,"Cover Image Styling","Radial gradient mask follows mouse pointer, gradient from black to rgba(255,255,255,0) at 300px","Radial gradient mask がマウスポインターを追跡し、black から rgba(255,255,255,0) まで 300px で gradient する"
+OK,Title Extraction,Title source priority 1: use front-matter title value if present,title の取得優先度 1: front-matter の title 値が存在する場合はそれを使用する
+Almost→OK,Title Extraction,Title source priority 2: use text content of first <h1> if no front-matter title,title の取得優先度 2: front-matter に title がない場合は最初の <h1> のテキストを使用する
+NG→OK,"Title Extraction","Title source priority 3: use capitalized slug (remove YYYY-MM-DD and hyphens) if no front-matter title and no <h1>","title の取得優先度 3: front-matter に title も <h1> もない場合はファイル名を capitalize（YYYY-MM-DD とハイフンを除去）して使用する"
+OK,Title Styling,common-ligatures typography setting is applied to the title,title に common-ligatures typography setting が適用される
+OK,Aside Information,Aside area shows date of the page,aside area に page の date が表示される
+OK,Aside Information,Aside area shows tags of the page,aside area に page の tags が表示される
+Almost→OK,Aside Information,"Aside area shows draft label if draft is true",draft が true の場合 aside area に draft label が表示される
+OK,Aside Information,Aside meta information is sticky to the top when scrolling,aside の meta information がスクロール時に top に固定される
+OK,Main Content: HTML,For .html files main content HTML tags are rendered as-is,.html ファイルの main content HTML tag はそのままレンダリングされる
+OK,Main Content: TXT,For .txt files each text line is turned into a <p> paragraph,.txt ファイルの各テキスト行が <p> paragraph に変換される
+OK,"Main Content: TXT","For .txt files individual lines with image extensions (no spaces) are turned into <img> tags","txt ファイルのスペースなし・画像拡張子付きの単独行が <img> tag に変換される"
+NG→OK,Main Content: Images,Image paths in both .html and .txt are replaced to fit final server paths,html と .txt 両方の image path がサーバー上で機能する final path に置き換えられる
+OK,Main Content: Images,Images folder is always the one under content-pages (not inside sub-folders),images folder は常に content-pages 直下のもの（sub-folder 内ではない）
+OK,Main Content: Image Interaction,Photos in content area have full-width to the main content container,content area の写真が main content container に対して full-width で表示される
+OK,Main Content: Image Interaction,Clicking a photo enlarges it,写真をクリックすると拡大される
+OK,Main Content: Image Interaction,Clicking the enlarged photo closes it and reverts to main content,拡大された写真をクリックすると閉じて main content に戻る
+OK,Main Content: Image Interaction,Scrolling while photo is enlarged also closes it and reverts to main content,写真拡大中にスクロールすると閉じて main content に戻る
+Almost→OK,Main Content: Drop Cap,First letter of the first paragraph has drop cap spanning 3 lines,最初の paragraph の先頭文字が3行分の drop cap を持つ
+OK,Tags,Tags page lists all pages with the given tag,Tags page が指定した tag を含む全 page を一覧表示する
+OK,Searching,Search input is provided on the page,page に search input が提供されている
+OK,Searching,Search matches against page title,search が page title に対してマッチングする
+OK,Searching,Search matches against page content,search が page content に対してマッチングする
+OK,Searching,Slash (/) can be used to define multiple keywords for OR logic search,スラッシュ（/）で複数 keyword を区切って OR logic で search できる

@@ -1,0 +1,4 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^$ /01_module_c/public/ [R=302,L]
+</IfModule>
