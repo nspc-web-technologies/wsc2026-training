@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>{{ $scanFile['meta']['title'] }}</title>
     <link rel="stylesheet" href="{{asset('css/common.css')}}">
     <script src="{{asset('js/script.js')}}" defer></script>
-    <meta name="og:title" content="title">
-    <meta name="og:description" content="description">
-    <meta name="twitter:title" content="title">
-    <meta name="twitter:description" content="description">
+    <meta property="og:title" content="{{ $scanFile['meta']['title'] }}">
+    <meta property="og:description" content="{{ $scanFile['front_matter']['summary'] ?? $scanFile['meta']['title'] }}">
+    <meta name="twitter:title" content="{{ $scanFile['meta']['title'] }}">
+    <meta name="twitter:description" content="{{ $scanFile['front_matter']['summary'] ?? $scanFile['meta']['title'] }}">
 </head>
 <body>
     {{-- @dd($scanFile) --}}
@@ -22,7 +22,7 @@
         <div class="circle"></div>
     </div>
 
-    <div class="title">{{$scanFile['meta']['title']}}</div>
+    <h1 class="title">{{$scanFile['meta']['title']}}</h1>
 
     <div class="flex">
         <div>
@@ -61,12 +61,13 @@
                     <span>-</span>
                 @endforelse
             </div>
-            <div>Draft: {{$scanFile['front_matter']['draft']??'false'}}</div>
+            @if (($scanFile['front_matter']['draft'] ?? 'false') == 'true')
+                <div>Draft</div>
+            @endif
         </div>
     </div>    
     <dialog id="dialog">
       <img src="" alt="" onclick="closeDialog()">
     </dialog>
-</div>
 </body>
 </html>

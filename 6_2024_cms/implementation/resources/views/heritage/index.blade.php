@@ -10,7 +10,7 @@
 <body>
     <div class="mv"></div>
 
-    <div class="title">Listing Page Layout</div class="h1">
+    <div class="title">Listing Page Layout</div>
 
     <div class="flex">
         <div>
@@ -24,7 +24,7 @@
                     <li>
                         <a href="{{ $file['meta']['url'] }}">{{ $file['meta']['title'] }}</a><br>
                         @if ($file['front_matter']['summary']??false)
-                            <p>{{$file['front_matter']['summary']}}</p>
+                            <a href="{{ $file['meta']['url'] }}">{{$file['front_matter']['summary']}}</a>
                         @endif
                     </li>
                 @endforeach
@@ -33,6 +33,7 @@
         <div>
             <div>Search</div>
             <form action="{{route('heritage.searchText')}}" method="get">
+                <label for="keyword" class="visually-hidden">Search keyword</label>
                 <input type="text" value="{{request('keyword')}}" name="keyword" id="keyword" placeholder="KEYWORD">
                 <button type="submit">Search</button>
             </form>

@@ -29,7 +29,7 @@ class ContentRepository
             }
         }
         if (isset($output['files'])) {
-            $output['files'] = collect($output['files'])->sortByDesc('name')->values()->toArray();
+            $output['files'] = collect($output['files'])->sortByDesc('meta.filename')->values()->toArray();
         }
         return $output;
     }
@@ -98,6 +98,9 @@ class ContentRepository
             $fileContents = $fileContents->replaceMatches('/^---\n(.*?)\n---/s', '');
             $output['front_matter'] = $frontMatter;
         };
+        if (!isset($output['front_matter']['cover'])) {
+            $output['front_matter']['cover'] = str(route('heritage.index'))->remove('/public') . '/content-pages/images/' . $path_parts['filename'] . '.jpg';
+        }
         if ($path_parts['extension'] == 'txt') {
             $ulLis = [];
             foreach (explode("\n", $fileContents) as $line) {
@@ -127,7 +130,11 @@ class ContentRepository
             }
             if (count($ulLis) > 0) $output['blocks'][] = $ulLis;
         } else {
-            foreach (explode("\n", $fileContents) as $line) {
+            $imagesBaseUrl = str(asset('/'))->remove('/public') . 'content-pages/images/';
+            $rewritten = preg_replace_callback('/<img([^>]*?)src=(["\'])(?!https?:\/\/|\/)([^"\']+)\2/i', function ($m) use ($imagesBaseUrl) {
+                return '<img' . $m[1] . 'src=' . $m[2] . $imagesBaseUrl . basename($m[3]) . $m[2];
+            }, (string) $fileContents);
+            foreach (explode("\n", $rewritten) as $line) {
                 if (trim($line) == '') continue;
                 if (preg_match('/^<h1>(.*?)<\/h1>$/', $line, $h1Matches)) {
                     $h1Title = $h1Matches[1];
@@ -137,7 +144,7 @@ class ContentRepository
         }
         preg_match('/^\d{4}\-\d{2}\-\d{2}/', $path_parts['filename'], $dateMatches);
         $output['meta'] = [
-            'title' => $frontMatter['title'] ?? $h1Title ?? str($path_parts['filename'])->replace('-', ' '),
+            'title' => $frontMatter['title'] ?? $h1Title ?? (string) str($path_parts['filename'])->replaceMatches('/^\d{4}\-\d{2}\-\d{2}\-?/', '')->replace('-', ' ')->title(),
             'date' => $dateMatches[0],
             'url' => asset('heritages') . str($targetDir)->afterLast('content-pages')->beforeLast('.'),
             'contents' => str($fileContents)->replace("\n", ''),
